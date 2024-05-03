@@ -1,0 +1,25 @@
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon {
+    height: 4.5rem;
+    width: 4.5rem;
+    animation: spin 1s linear infinite;
+    stroke: rgba(107, 114, 128, 1);
+  }
+  
+  .loading-text {
+    font-size: 1.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: rgba(107, 114, 128, 1);
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
