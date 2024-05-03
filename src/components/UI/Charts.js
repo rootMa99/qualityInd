@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import React from "react";
 
+
 const Charts = (p) => {
   const barChart = {
     labels: p.data.map((m) => m.cat),

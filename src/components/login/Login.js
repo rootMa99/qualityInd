@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import c from "./Login.module.css";
 import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
+import { USERS } from "../../DemoData";
+import { loginActions } from "../../store/loginSlice";
 
 const Login = () => {
   const [loginCred, setLogingCred] = useState({
@@ -13,7 +15,10 @@ const Login = () => {
 
   const ClickHandler = async (e) => {
     e.preventDefault();
-   
+    const data= USERS.filter(f=>f.userName===loginCred.name);
+    if(data.length>0){
+      dispatch(loginActions.logIn(data[0]));
+    }
   };
 
   const nameChangeHadler = (e) => {
