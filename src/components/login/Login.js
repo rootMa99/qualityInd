@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import c from "./Login.module.css";
 import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
-import api from "../../service/api";
-import { loginActions } from "../../store/loginSlice";
-import aptivBgVid from "../../assets/videointro.mp4";
+
 const Login = () => {
   const [loginCred, setLogingCred] = useState({
     name: "",
@@ -15,39 +13,7 @@ const Login = () => {
 
   const ClickHandler = async (e) => {
     e.preventDefault();
-    if (loginCred.name.trim() !== "" && loginCred.pwd.trim() !== "") {
-      const body = { userName: loginCred.name, password: loginCred.pwd };
-
-      try {
-        const response = await fetch(`${api}/auth/signIn`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        });
-
-        const data = await response.json();
-        console.log(data);
-        dispatch(
-          loginActions.logIn({
-            role: data.role,
-            userName: data.userName,
-            token: data.token,
-          })
-        );
-      } catch (error) {
-        console.error("Error:", error);
-        setErr(true);
-      }
-      // dispatch(
-      //   loginActions.logIn({
-      //     role: "ROOT",
-      //     userName: "data.userName",
-      //     token: "data.token",
-      //   })
-      // );
-    }
+   
   };
 
   const nameChangeHadler = (e) => {
@@ -66,12 +32,9 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <video className={c.videoBg} autoPlay loop playsInline muted>
-        <source src={aptivBgVid} type="video/mp4" />
-      </video>
       <div className={c.cont}>
         <span className={c.cer}> </span>
-        <h1 className={c.titlte}>training center app</h1>
+        <h1 className={c.titlte}>quality ind app</h1>
         <span className={c.cer}> </span>
       </div>
       <form className={c["Form-container"]} onSubmit={ClickHandler}>
