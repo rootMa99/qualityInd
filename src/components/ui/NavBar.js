@@ -30,52 +30,7 @@ const NavBar = (p) => {
                 home
               </NavLink>
             </li>
-            {(isLoged.role === "ROOT" || isLoged.role === "ADMIN") && (
-              <React.Fragment>
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      isActive ? c.activeLink : c.link
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/reporting"
-                    className={({ isActive }) =>
-                      isActive ? c.activeLink : c.link
-                    }
-                  >
-                    reporting
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/uploadFiles"
-                    className={({ isActive }) =>
-                      isActive ? c.activeLink : c.link
-                    }
-                  >
-                  Add a new training session
-                  </NavLink>
-                </li>
-                {isLoged.role === "ROOT" && (
-                  <li>
-                    <NavLink
-                      to="/createuser"
-                      className={({ isActive }) =>
-                        isActive ? c.activeLink : c.link
-                      }
-                    >
-                      create User
-                    </NavLink>
-                  </li>
-                )}
-              </React.Fragment>
-            )}
+
             <li>
               <button
                 className={c.Btn}

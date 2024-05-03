@@ -1,0 +1,117 @@
+
+.cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation-name: top;
+  animation-duration: 2s;
+  animation-iteration-count: ease-in;
+}
+.titlte {
+  color: white;
+  text-transform: uppercase;
+  z-index: 1;
+  /* animation-name: notsh;
+  animation-delay: 1s; 
+  animation-duration: 10s;
+  animation-iteration-count: ease-in; */
+}
+.cer {
+  width: 1.2rem;
+  height: 1.2rem;
+  z-index: 1;
+  background-color: #f84018;
+  border-radius: 50%;
+}
+@keyframes top {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
+.Form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #16161633;
+  border: 2px solid #f84018;
+  color: #f84018;
+  width: 25rem;
+  border-radius: 10px;
+  padding: 1em 1rem;
+  box-shadow: 0px 0px 12px 12px #5e5d5d1a;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-title {
+  font-size: 2rem;
+}
+.username,
+.userpassword {
+  text-align: center;
+  margin: 0.6rem;
+  color: white;
+  background: transparent;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  width: 19rem;
+  font-size: 1.2rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid #f84018;
+  background-color: #00000077;
+ 
+}
+.username:focus,
+.userpassword:focus {
+  transform: scale(1.03);
+  border: 2px solid #000;
+}
+.username:hover,
+.userpassword:hover {
+  border: 2px solid #000;
+  cursor: pointer;
+}
+.Login {
+  background: transparent;
+  border: 2px solid #f84018;
+  padding: 0.5rem 3rem;
+  margin: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #f84018;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-inline: 1rem;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+}
+.Login:hover {
+  background: #000000;
+  border: 2px solid #000;
+}
+.videoBg {
+  object-fit: cover;
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  margin: 3rem 0 0 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  filter: blur(20px);
+}
