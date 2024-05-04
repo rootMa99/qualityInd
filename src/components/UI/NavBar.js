@@ -7,6 +7,7 @@ import { loginActions } from "../../store/loginSlice";
 
 const NavBar = (p) => {
   const { isLoged } = useSelector((s) => s.login);
+
   const dispatch = useDispatch();
   return (
     <div className={c.navBar}>
@@ -30,7 +31,18 @@ const NavBar = (p) => {
                 home
               </NavLink>
             </li>
-
+            {(isLoged.role === "sp" || isLoged.role === "monitor") && (
+              <li>
+                <NavLink
+                  to="/dashbord"
+                  className={({ isActive }) =>
+                    isActive ? c.activeLink : c.link
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
             <li>
               <button
                 className={c.Btn}

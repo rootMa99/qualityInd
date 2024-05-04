@@ -16,6 +16,7 @@ const Login = () => {
   const ClickHandler = async (e) => {
     e.preventDefault();
     const data= USERS.filter(f=>f.userName===loginCred.name);
+
     if(data.length>0){
       dispatch(loginActions.logIn(data[0]));
     }
