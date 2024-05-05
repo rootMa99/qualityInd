@@ -103,85 +103,134 @@ const PlaningForm = (p) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (next){
-        setNext(false);
-        return;
+    if (next) {
+      setNext(false);
+      return;
     }
-    //http req
+    //http request post
   };
 
   return (
     <div className={c.container}>
       <h3>{p.data.fullName}</h3>
       <form className={c.form} onSubmit={onSubmitHandler}>
-        <div className={c.selectsContainer}>
-          <div className={c.inputContainer}>
-            <label htmlFor="project">project</label>
-            <Select
-              options={[]}
-              id="project"
-              inputId="project"
-              styles={customStyles}
-              placeholder="SELECT PROJECT"
-              onChange={(e) => onChangeHandler(e, "project")}
-            />
+        {next && (
+          <div className={c.selectsContainer}>
+            <div className={c.inputContainer}>
+              <label htmlFor="project">project</label>
+              <Select
+                options={[]}
+                id="project"
+                inputId="project"
+                styles={customStyles}
+                placeholder="SELECT PROJECT"
+                onChange={(e) => onChangeHandler(e, "project")}
+              />
+            </div>
+            <div className={c.inputContainer}>
+              <label htmlFor="family">family</label>
+              <Select
+                options={[]}
+                id="family"
+                inputId="family"
+                styles={customStyles}
+                placeholder="SELECT FAMILY"
+                onChange={(e) => onChangeHandler(e, "family")}
+              />
+            </div>
+            <div className={c.inputContainer}>
+              <label htmlFor="line">line</label>
+              <Select
+                options={[]}
+                id="line"
+                inputId="line"
+                styles={customStyles}
+                placeholder="SELECT LINE"
+                onChange={(e) => onChangeHandler(e, "line")}
+              />
+            </div>
+            <div className={c.inputContainer}>
+              <label htmlFor="crew">crew</label>
+              <Select
+                options={[]}
+                id="crew"
+                inputId="crew"
+                styles={customStyles}
+                placeholder="SELECT CREW"
+                onChange={(e) => onChangeHandler(e, "crew")}
+              />
+            </div>
+            <div className={c.inputContainer}>
+              <label htmlFor="shift">shift</label>
+              <Select
+                options={[]}
+                id="shift"
+                inputId="shift"
+                styles={customStyles}
+                placeholder="SELECT SHIFT"
+                onChange={(e) => onChangeHandler(e, "shift")}
+              />
+            </div>
+            <div className={c.inputContainer}>
+              <label htmlFor="audit">audit</label>
+              <Select
+                options={[]}
+                id="audit"
+                inputId="audit"
+                styles={customStyles}
+                placeholder="SELECT AUDIT"
+                onChange={(e) => onChangeHandler(e, "audit")}
+              />
+            </div>
           </div>
-          <div className={c.inputContainer}>
-            <label htmlFor="family">family</label>
-            <Select
-              options={[]}
-              id="family"
-              inputId="family"
-              styles={customStyles}
-              placeholder="SELECT FAMILY"
-              onChange={(e) => onChangeHandler(e, "family")}
-            />
+        )}
+        {!next && (
+          <div className={c.tasksHolder}>
+            <div className={c.taskType}>
+              <h4>process</h4>
+              <div className={c.tasks}>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+              </div>
+            </div>
+            <div className={c.taskType}>
+              <h4>product</h4>
+              <div className={c.tasks}>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+              </div>
+            </div>
+            <div className={c.taskType}>
+              <h4>monitoring</h4>
+              <div className={c.tasks}>
+                <div className={c.task}>
+                  <input type="checkbox" />
+                  <label>task1</label>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className={c.inputContainer}>
-            <label htmlFor="line">line</label>
-            <Select
-              options={[]}
-              id="line"
-              inputId="line"
-              styles={customStyles}
-              placeholder="SELECT LINE"
-              onChange={(e) => onChangeHandler(e, "line")}
-            />
-          </div>
-          <div className={c.inputContainer}>
-            <label htmlFor="crew">crew</label>
-            <Select
-              options={[]}
-              id="crew"
-              inputId="crew"
-              styles={customStyles}
-              placeholder="SELECT CREW"
-              onChange={(e) => onChangeHandler(e, "crew")}
-            />
-          </div>
-          <div className={c.inputContainer}>
-            <label htmlFor="shift">shift</label>
-            <Select
-              options={[]}
-              id="shift"
-              inputId="shift"
-              styles={customStyles}
-              placeholder="SELECT SHIFT"
-              onChange={(e) => onChangeHandler(e, "shift")}
-            />
-          </div>
-          <div className={c.inputContainer}>
-            <label htmlFor="audit">audit</label>
-            <Select
-              options={[]}
-              id="audit"
-              inputId="audit"
-              styles={customStyles}
-              placeholder="SELECT AUDIT"
-              onChange={(e) => onChangeHandler(e, "audit")}
-            />
-          </div>
-        </div>
+        )}
         <button type="submit">{next ? "next" : "submit"}</button>
       </form>
     </div>
