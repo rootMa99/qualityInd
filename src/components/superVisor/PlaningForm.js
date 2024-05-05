@@ -1,6 +1,6 @@
 import Select from "react-select";
 import c from "./PlaningForm.module.css";
-import React from "react";
+import React, { useState } from "react";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -67,79 +67,118 @@ const customStyles = {
 };
 
 const PlaningForm = (p) => {
+  const [dataForm, setDataForm] = useState({
+    project: "",
+    family: "",
+    line: "",
+    crew: "",
+    audit: "",
+    shift: "",
+  });
 
-    const onSubmitHandler=e=>{
-        e.preventDefault();
+  const onChangeHandler = (e, d) => {
+    switch (d) {
+      case "project":
+        setDataForm((p) => ({ ...p, project: e.value }));
+        break;
+      case "family":
+        setDataForm((p) => ({ ...p, family: e.value }));
+        break;
+      case "line":
+        setDataForm((p) => ({ ...p, line: e.value }));
+        break;
+      case "crew":
+        setDataForm((p) => ({ ...p, crew: e.value }));
+        break;
+      case "audit":
+        setDataForm((p) => ({ ...p, audit: e.value }));
+        break;
+      case "shift":
+        setDataForm((p) => ({ ...p, shift: e.value }));
+        break;
+      default:
+        break;
     }
+  };
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className={c.container}>
       <h3>{p.data.fullName}</h3>
-      <form className={c.form}>
+      <form className={c.form} onSubmit={onSubmitHandler}>
         <div className={c.selectsContainer}>
           <div className={c.inputContainer}>
-            <label htmlFor="trainingType">project</label>
+            <label htmlFor="project">project</label>
             <Select
               options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
+              id="project"
+              inputId="project"
               styles={customStyles}
               placeholder="SELECT PROJECT"
+              onChange={e=>onChangeHandler(e, "project")}
             />
           </div>
           <div className={c.inputContainer}>
-            <label htmlFor="trainingType">family</label>
+            <label htmlFor="family">family</label>
             <Select
               options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
+              id="family"
+              inputId="family"
               styles={customStyles}
               placeholder="SELECT FAMILY"
+              onChange={e=>onChangeHandler(e, "family")}
             />
           </div>
           <div className={c.inputContainer}>
-            <label htmlFor="trainingType">line</label>
+            <label htmlFor="line">line</label>
             <Select
               options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
+              id="line"
+              inputId="line"
               styles={customStyles}
               placeholder="SELECT LINE"
+              onChange={e=>onChangeHandler(e, "line")}
+
             />
           </div>
           <div className={c.inputContainer}>
-            <label htmlFor="trainingType">crew</label>
+            <label htmlFor="crew">crew</label>
             <Select
               options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
+              id="crew"
+              inputId="crew"
               styles={customStyles}
               placeholder="SELECT CREW"
+              onChange={e=>onChangeHandler(e, "crew")}
+
             />
           </div>
           <div className={c.inputContainer}>
-            <label htmlFor="trainingType">shift</label>
+            <label htmlFor="shift">shift</label>
             <Select
               options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
+              id="shift"
+              inputId="shift"
               styles={customStyles}
               placeholder="SELECT SHIFT"
+              onChange={e=>onChangeHandler(e, "shift")}
             />
           </div>
           <div className={c.inputContainer}>
-            <label htmlFor="trainingType">audit</label>
+            <label htmlFor="audit">audit</label>
             <Select
               options={[]}
-              id="multiSelect"
-              inputId="shiftleader1"
+              id="audit"
+              inputId="audit"
               styles={customStyles}
               placeholder="SELECT AUDIT"
+              onChange={e=>onChangeHandler(e, "audit")}
             />
           </div>
         </div>
-
         <button type="submit">submit</button>
       </form>
     </div>
