@@ -34,7 +34,7 @@ const NavBar = (p) => {
             {(isLoged.role === "sp" || isLoged.role === "monitor") && (
               <li>
                 <NavLink
-                  to="/dashbord"
+                  to="/dashboard"
                   className={({ isActive }) =>
                     isActive ? c.activeLink : c.link
                   }
