@@ -1,0 +1,41 @@
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11111;
+  width: 80%;
+  background-color: black;
+  padding: 2rem 1rem;
+  border-radius: 14px;
+}
+.container h3 {
+  color: antiquewhite;
+  margin: 0;
+}
+.form {
+  margin-top: 1rem;
+}
+.selectsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.inputContainer {
+  width: 45%;
+}
+.inputContainer label {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: small;
+}
+.form button{
+    width: 90%;
+    background-color: rgb(31, 30, 30);
+    border: 1px solid white;
+    border-radius: 14px;
+}

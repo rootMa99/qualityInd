@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AUDITOR } from "../../DemoData";
 import c from "./Home.module.css";
 import BackDrop from "../UI/BackDrop";
+import PlaningForm from "./PlaningForm";
 
 const Home = (p) => {
   const [auditData, setAudit] = useState(AUDITOR);
@@ -24,6 +25,7 @@ const Home = (p) => {
   return (
     <div className={c.container}>
       {planify && <BackDrop click={close} />}
+      {planify && <PlaningForm data={planify} />}
       <h1 className={c.title}>Auditors list</h1>
       <table className={c.table}>
         <thead>
