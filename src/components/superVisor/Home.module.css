@@ -20,7 +20,7 @@
   background-color: #f84018;
 }
 .table thead {
-  position: sticky;
+  /* position: sticky; */
   top: 9rem;
   z-index: 1;
 }
