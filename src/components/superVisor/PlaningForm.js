@@ -67,6 +67,12 @@ const customStyles = {
 };
 
 const PlaningForm = (p) => {
+
+    const onSubmitHandler=e=>{
+        e.preventDefault();
+    }
+
+
   return (
     <div className={c.container}>
       <h3>{p.data.fullName}</h3>
@@ -79,7 +85,7 @@ const PlaningForm = (p) => {
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="SELECT"
+              placeholder="SELECT PROJECT"
             />
           </div>
           <div className={c.inputContainer}>
@@ -89,7 +95,7 @@ const PlaningForm = (p) => {
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="SELECT"
+              placeholder="SELECT FAMILY"
             />
           </div>
           <div className={c.inputContainer}>
@@ -99,7 +105,7 @@ const PlaningForm = (p) => {
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="SELECT"
+              placeholder="SELECT LINE"
             />
           </div>
           <div className={c.inputContainer}>
@@ -109,7 +115,7 @@ const PlaningForm = (p) => {
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="SELECT"
+              placeholder="SELECT CREW"
             />
           </div>
           <div className={c.inputContainer}>
@@ -119,7 +125,7 @@ const PlaningForm = (p) => {
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="SELECT"
+              placeholder="SELECT SHIFT"
             />
           </div>
           <div className={c.inputContainer}>
@@ -129,7 +135,7 @@ const PlaningForm = (p) => {
               id="multiSelect"
               inputId="shiftleader1"
               styles={customStyles}
-              placeholder="SELECT"
+              placeholder="SELECT AUDIT"
             />
           </div>
         </div>
