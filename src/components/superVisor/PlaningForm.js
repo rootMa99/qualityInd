@@ -75,7 +75,7 @@ const PlaningForm = (p) => {
     audit: "",
     shift: "",
   });
-
+  const [next, setNext] = useState(true);
   const onChangeHandler = (e, d) => {
     switch (d) {
       case "project":
@@ -103,6 +103,11 @@ const PlaningForm = (p) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (next){
+        setNext(false);
+        return;
+    }
+    //http req
   };
 
   return (
@@ -118,7 +123,7 @@ const PlaningForm = (p) => {
               inputId="project"
               styles={customStyles}
               placeholder="SELECT PROJECT"
-              onChange={e=>onChangeHandler(e, "project")}
+              onChange={(e) => onChangeHandler(e, "project")}
             />
           </div>
           <div className={c.inputContainer}>
@@ -129,7 +134,7 @@ const PlaningForm = (p) => {
               inputId="family"
               styles={customStyles}
               placeholder="SELECT FAMILY"
-              onChange={e=>onChangeHandler(e, "family")}
+              onChange={(e) => onChangeHandler(e, "family")}
             />
           </div>
           <div className={c.inputContainer}>
@@ -140,8 +145,7 @@ const PlaningForm = (p) => {
               inputId="line"
               styles={customStyles}
               placeholder="SELECT LINE"
-              onChange={e=>onChangeHandler(e, "line")}
-
+              onChange={(e) => onChangeHandler(e, "line")}
             />
           </div>
           <div className={c.inputContainer}>
@@ -152,8 +156,7 @@ const PlaningForm = (p) => {
               inputId="crew"
               styles={customStyles}
               placeholder="SELECT CREW"
-              onChange={e=>onChangeHandler(e, "crew")}
-
+              onChange={(e) => onChangeHandler(e, "crew")}
             />
           </div>
           <div className={c.inputContainer}>
@@ -164,7 +167,7 @@ const PlaningForm = (p) => {
               inputId="shift"
               styles={customStyles}
               placeholder="SELECT SHIFT"
-              onChange={e=>onChangeHandler(e, "shift")}
+              onChange={(e) => onChangeHandler(e, "shift")}
             />
           </div>
           <div className={c.inputContainer}>
@@ -175,11 +178,11 @@ const PlaningForm = (p) => {
               inputId="audit"
               styles={customStyles}
               placeholder="SELECT AUDIT"
-              onChange={e=>onChangeHandler(e, "audit")}
+              onChange={(e) => onChangeHandler(e, "audit")}
             />
           </div>
         </div>
-        <button type="submit">submit</button>
+        <button type="submit">{next ? "next" : "submit"}</button>
       </form>
     </div>
   );
