@@ -10,7 +10,7 @@
   border-radius: 14px;
 }
 .container h3 {
-  color: antiquewhite;
+  color: #f33716;
   margin: 0;
 }
 .form {
@@ -54,9 +54,10 @@
 .tasksHolder {
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 .taskType {
-  width: 33%;
+  width: 32.5%;
   color: aliceblue;
 }
 .taskType h4 {
@@ -81,10 +82,12 @@
   cursor: pointer;
   text-transform: uppercase;
 }
+.task label:hover {
+  color: #f33716 !important;
+}
 .task label {
   width: 100%;
 }
 .task:hover {
   transform: scale(1.03);
-  color: #f33716;
 }
