@@ -198,7 +198,7 @@ const PlaningForm = (p) => {
         {next && (
           <div className={c.selectsContainer}>
             <div className={c.inputContainer}>
-              <label htmlFor="project">project</label>
+              <label htmlFor="project">week</label>
               <Select
                 options={[]}
                 id="project"
@@ -266,6 +266,18 @@ const PlaningForm = (p) => {
           </div>
         )}
         {!next && (
+          <React.Fragment>
+          <div className={c.inputContainer}>
+          <label htmlFor="project">crew</label>
+          <Select
+            options={[]}
+            id="project"
+            inputId="project"
+            styles={customStyles}
+            placeholder="SELECT PROJECT"
+            onChange={(e) => onChangeHandler(e, "project")}
+          />
+        </div>
           <div className={c.tasksHolder}>
             <div className={c.taskType}>
               <h4>process</h4>
@@ -301,7 +313,7 @@ const PlaningForm = (p) => {
               </div>
             </div>
             <div className={c.taskType}>
-              <h4>process</h4>
+              <h4>monitoring</h4>
               <div className={c.tasks}>
                 <div className={c.task}>
                   <input
@@ -334,7 +346,7 @@ const PlaningForm = (p) => {
               </div>
             </div>
             <div className={c.taskType}>
-              <h4>process</h4>
+              <h4>produit</h4>
               <div className={c.tasks}>
                 <div className={c.task}>
                   <input
@@ -367,6 +379,7 @@ const PlaningForm = (p) => {
               </div>
             </div>
           </div>
+          </React.Fragment>
         )}
         <button type="submit">{next ? "next" : "submit"}</button>
       </form>
