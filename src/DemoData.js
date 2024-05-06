@@ -14,7 +14,7 @@ export const AUDITOR = [
   },
   {
     matricule: 282,
-    fullName: "TAHTAHA  MOHAMMED",
+    fullName: "TAHTAHA MOHAMMED",
   },
   {
     matricule: 285,
@@ -26,15 +26,15 @@ export const AUDITOR = [
   },
   {
     matricule: 360,
-    fullName: "ZERROUK  RACHIDA",
+    fullName: "ZERROUK RACHIDA",
   },
   {
     matricule: 361,
-    fullName: "EL-BALDI  ISMAIL",
+    fullName: "EL-BALDI ISMAIL",
   },
   {
     matricule: 363,
-    fullName: "Haoudar  Hamid",
+    fullName: "Haoudar Hamid",
   },
   {
     matricule: 366,
@@ -42,7 +42,7 @@ export const AUDITOR = [
   },
   {
     matricule: 367,
-    fullName: " ACHBANI  MOHAMED",
+    fullName: " ACHBANI MOHAMED",
   },
   {
     matricule: 385,
@@ -54,15 +54,15 @@ export const AUDITOR = [
   },
   {
     matricule: 410,
-    fullName: "KENNOUF   SAIDA    ",
+    fullName: "KENNOUF SAIDA",
   },
   {
     matricule: 420,
-    fullName: "AHMED ECHRIF  HICHAM      ",
+    fullName: "AHMED ECHRIF HICHAM",
   },
   {
     matricule: 437,
-    fullName: "JAIT   MOHAMED      ",
+    fullName: "JAIT MOHAMED",
   },
   {
     matricule: 454,
@@ -70,7 +70,7 @@ export const AUDITOR = [
   },
   {
     matricule: 486,
-    fullName: "LAHMAM  ABDELLAH         ",
+    fullName: "LAHMAM ABDELLAH",
   },
   {
     matricule: 502,
@@ -78,7 +78,7 @@ export const AUDITOR = [
   },
   {
     matricule: 518,
-    fullName: "LAOUHIDI  ASMAE",
+    fullName: "LAOUHIDI ASMAE",
   },
   {
     matricule: 519,
@@ -138,7 +138,7 @@ export const AUDITOR = [
   },
   {
     matricule: 841,
-    fullName: "BOUKALLAL  OTHMANE",
+    fullName: "BOUKALLAL OTHMANE",
   },
   {
     matricule: 953,
@@ -182,7 +182,7 @@ export const AUDITOR = [
   },
   {
     matricule: 1678,
-    fullName: "EL HAOUARI  MOHAMED",
+    fullName: "EL HAOUARI MOHAMED",
   },
   {
     matricule: 3173,

@@ -276,7 +276,7 @@ const PlaningForm = (p) => {
                     type="checkbox"
                     onChange={(e) => checkAll(e, "process")}
                   />
-                  <label htmlFor={"all"}>{"all"}</label>
+                  <label htmlFor={"all"}>{"check all"}</label>
                 </div>
                 {auditorJob.process.map((m, i) => (
                   <div className={c.task}>
@@ -309,7 +309,7 @@ const PlaningForm = (p) => {
                     type="checkbox"
                     onChange={(e) => checkAll(e, "monitoring")}
                   />
-                  <label htmlFor={"allm"}>{"all"}</label>
+                  <label htmlFor={"allm"}>{"check all"}</label>
                 </div>
                 {auditorJob.monitoring.map((m, i) => (
                   <div className={c.task}>
@@ -342,7 +342,7 @@ const PlaningForm = (p) => {
                     type="checkbox"
                     onChange={(e) => checkAll(e, "produit")}
                   />
-                  <label htmlFor={"allp"}>{"all"}</label>
+                  <label htmlFor={"allp"}>{"check all"}</label>
                 </div>
                 {auditorJob.produit.map((m, i) => (
                   <div className={c.task}>
