@@ -1,6 +1,7 @@
 import Select from "react-select";
 import c from "./PlaningForm.module.css";
 import React, { useState } from "react";
+import { getCurrentWeekNumber } from "../hooks/hfunc";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -105,11 +106,8 @@ const auditorJob = {
 
 const PlaningForm = (p) => {
   const [dataForm, setDataForm] = useState({
-    project: "",
-    family: "",
-    line: "",
+    date: getCurrentWeekNumber(),
     crew: "",
-    audit: "",
     shift: "",
   });
   const [tasks, setTasks] = useState([]);
@@ -190,7 +188,7 @@ const PlaningForm = (p) => {
       });
     }
   };
-
+  console.log(getCurrentWeekNumber());
   return (
     <div className={c.container}>
       <h3>{p.data.fullName}</h3>
@@ -198,53 +196,21 @@ const PlaningForm = (p) => {
         {next && (
           <div className={c.selectsContainer}>
             <div className={c.inputContainer}>
-              <label htmlFor="project">week</label>
-              <Select
-                options={[]}
-                id="project"
-                inputId="project"
-                styles={customStyles}
-                placeholder="SELECT PROJECT"
-                onChange={(e) => onChangeHandler(e, "project")}
-              />
-            </div>
-            <div className={c.inputContainer}>
-              <label htmlFor="family">family</label>
-              <Select
-                options={[]}
-                id="family"
-                inputId="family"
-                styles={customStyles}
-                placeholder="SELECT FAMILY"
-                onChange={(e) => onChangeHandler(e, "family")}
-              />
-            </div>
-            <div className={c.inputContainer}>
-              <label htmlFor="line">line</label>
-              <Select
-                options={[]}
-                id="line"
-                inputId="line"
-                styles={customStyles}
-                placeholder="SELECT LINE"
-                onChange={(e) => onChangeHandler(e, "line")}
-              />
-            </div>
-            <div className={c.inputContainer}>
-              <label htmlFor="crew">crew</label>
-              <Select
-                options={[]}
-                id="crew"
-                inputId="crew"
-                styles={customStyles}
-                placeholder="SELECT CREW"
-                onChange={(e) => onChangeHandler(e, "crew")}
+              <input
+                id="week"
+                type="week"
+                onChange={(e) => console.log(e.target.value)}
+                value={dataForm.date}
               />
             </div>
             <div className={c.inputContainer}>
               <label htmlFor="shift">shift</label>
               <Select
-                options={[]}
+                options={[
+                  { label: "morning", value: "morning" },
+                  { label: "evenning", value: "evenning" },
+                  { label: "nigth", value: "nigth" },
+                ]}
                 id="shift"
                 inputId="shift"
                 styles={customStyles}
@@ -252,133 +218,122 @@ const PlaningForm = (p) => {
                 onChange={(e) => onChangeHandler(e, "shift")}
               />
             </div>
-            <div className={c.inputContainer}>
-              <label htmlFor="audit">audit</label>
-              <Select
-                options={[]}
-                id="audit"
-                inputId="audit"
-                styles={customStyles}
-                placeholder="SELECT AUDIT"
-                onChange={(e) => onChangeHandler(e, "audit")}
-              />
-            </div>
           </div>
         )}
         {!next && (
           <React.Fragment>
-          <div className={c.inputContainer}>
-          <label htmlFor="project">crew</label>
-          <Select
-            options={[]}
-            id="project"
-            inputId="project"
-            styles={customStyles}
-            placeholder="SELECT PROJECT"
-            onChange={(e) => onChangeHandler(e, "project")}
-          />
-        </div>
-          <div className={c.tasksHolder}>
-            <div className={c.taskType}>
-              <h4>process</h4>
-              <div className={c.tasks}>
-                <div className={c.task}>
-                  <input
-                    id={"all"}
-                    type="checkbox"
-                    onChange={(e) => checkAll(e, "process")}
-                  />
-                  <label htmlFor={"all"}>{"check all"}</label>
-                </div>
-                {auditorJob.process.map((m, i) => (
-                  <div className={c.task} key={i}>
+            <div className={c.inputContainer}>
+              <label htmlFor="project">crew</label>
+              <Select
+                options={[]}
+                id="project"
+                inputId="project"
+                styles={customStyles}
+                placeholder="SELECT CREW"
+                onChange={(e) => onChangeHandler(e, "project")}
+              />
+            </div>
+            <div className={c.tasksHolder}>
+              <div className={c.taskType}>
+                <h4>process</h4>
+                <div className={c.tasks}>
+                  <div className={c.task}>
                     <input
-                      id={m}
+                      id={"all"}
                       type="checkbox"
-                      onChange={(e) => onchangeHandlercb(e, m)}
-                      checked={findTask(m)}
+                      onChange={(e) => checkAll(e, "process")}
                     />
-                    <label
-                      htmlFor={m}
-                      style={
-                        findTask(m)
-                          ? { color: "#f33716", fontWeight: 700 }
-                          : { color: "aliceblue", fontWeight: "normal" }
-                      }
-                    >
-                      {m}
-                    </label>
+                    <label htmlFor={"all"}>{"check all"}</label>
                   </div>
-                ))}
+                  {auditorJob.process.map((m, i) => (
+                    <div className={c.task} key={i}>
+                      <input
+                        id={m}
+                        type="checkbox"
+                        onChange={(e) => onchangeHandlercb(e, m)}
+                        checked={findTask(m)}
+                      />
+                      <label
+                        htmlFor={m}
+                        style={
+                          findTask(m)
+                            ? { color: "#f33716", fontWeight: 700 }
+                            : { color: "aliceblue", fontWeight: "normal" }
+                        }
+                      >
+                        {m}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={c.taskType}>
+                <h4>monitoring</h4>
+                <div className={c.tasks}>
+                  <div className={c.task}>
+                    <input
+                      id={"allm"}
+                      type="checkbox"
+                      onChange={(e) => checkAll(e, "monitoring")}
+                    />
+                    <label htmlFor={"allm"}>{"check all"}</label>
+                  </div>
+                  {auditorJob.monitoring.map((m, i) => (
+                    <div className={c.task} key={i}>
+                      <input
+                        id={m}
+                        type="checkbox"
+                        onChange={(e) => onchangeHandlercb(e, m)}
+                        checked={findTask(m)}
+                      />
+                      <label
+                        htmlFor={m}
+                        style={
+                          findTask(m)
+                            ? { color: "#f33716", fontWeight: 700 }
+                            : { color: "aliceblue", fontWeight: "normal" }
+                        }
+                      >
+                        {m}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={c.taskType}>
+                <h4>produit</h4>
+                <div className={c.tasks}>
+                  <div className={c.task}>
+                    <input
+                      id={"allp"}
+                      type="checkbox"
+                      onChange={(e) => checkAll(e, "produit")}
+                    />
+                    <label htmlFor={"allp"}>{"check all"}</label>
+                  </div>
+                  {auditorJob.produit.map((m, i) => (
+                    <div className={c.task} key={i}>
+                      <input
+                        id={m}
+                        type="checkbox"
+                        onChange={(e) => onchangeHandlercb(e, m)}
+                        checked={findTask(m)}
+                      />
+                      <label
+                        htmlFor={m}
+                        style={
+                          findTask(m)
+                            ? { color: "#f33716", fontWeight: 700 }
+                            : { color: "aliceblue", fontWeight: "normal" }
+                        }
+                      >
+                        {m}
+                      </label>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            <div className={c.taskType}>
-              <h4>monitoring</h4>
-              <div className={c.tasks}>
-                <div className={c.task}>
-                  <input
-                    id={"allm"}
-                    type="checkbox"
-                    onChange={(e) => checkAll(e, "monitoring")}
-                  />
-                  <label htmlFor={"allm"}>{"check all"}</label>
-                </div>
-                {auditorJob.monitoring.map((m, i) => (
-                  <div className={c.task} key={i}>
-                    <input
-                      id={m}
-                      type="checkbox"
-                      onChange={(e) => onchangeHandlercb(e, m)}
-                      checked={findTask(m)}
-                    />
-                    <label
-                      htmlFor={m}
-                      style={
-                        findTask(m)
-                          ? { color: "#f33716", fontWeight: 700 }
-                          : { color: "aliceblue", fontWeight: "normal" }
-                      }
-                    >
-                      {m}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className={c.taskType}>
-              <h4>produit</h4>
-              <div className={c.tasks}>
-                <div className={c.task}>
-                  <input
-                    id={"allp"}
-                    type="checkbox"
-                    onChange={(e) => checkAll(e, "produit")}
-                  />
-                  <label htmlFor={"allp"}>{"check all"}</label>
-                </div>
-                {auditorJob.produit.map((m, i) => (
-                  <div className={c.task} key={i}>
-                    <input
-                      id={m}
-                      type="checkbox"
-                      onChange={(e) => onchangeHandlercb(e, m)}
-                      checked={findTask(m)}
-                    />
-                    <label
-                      htmlFor={m}
-                      style={
-                        findTask(m)
-                          ? { color: "#f33716", fontWeight: 700 }
-                          : { color: "aliceblue", fontWeight: "normal" }
-                      }
-                    >
-                      {m}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
           </React.Fragment>
         )}
         <button type="submit">{next ? "next" : "submit"}</button>

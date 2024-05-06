@@ -33,6 +33,27 @@
   font-weight: 100;
   font-size: small;
 }
+.inputContainer input[type="week"]{
+  width: 30%;
+  padding: 5px;
+  text-align: center;
+  background-color: black;
+  border: 1px solid #8a8989;
+  border-radius: 10px;
+  color: aliceblue;
+}
+.inputContainer input[type="week"]:hover{
+  border: 1px solid #f33716;
+  color: #f33716;
+}
+.inputContainer input[type="week"]::-webkit-calendar-picker-indicator {
+  width: 20px;
+  height: 20px; 
+  border-radius: 50%;
+  margin-left: 5px; 
+  cursor: pointer; 
+  background-color: aliceblue;
+}
 .form button {
   width: 90%;
   background-color: black;
