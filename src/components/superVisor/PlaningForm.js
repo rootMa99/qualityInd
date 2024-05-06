@@ -66,6 +66,44 @@ const customStyles = {
   }),
 };
 
+const auditorJob = {
+  process: [
+    "Checklist Table Pre-control",
+    "Checklist d’étenchiète",
+    "Checklist Heat Shrinking : Funda",
+    "Checklist US USW: Epissure + Ring",
+    "Checklist Tape dispenser",
+    "Checklist Contrôle électrique",
+    "Checklist Pistolet",
+    "Checklist Molette",
+    "Checklist Goulotte",
+    "Checklist PUR",
+    "Checklist Torque",
+    "Checklist Vision machine",
+    "Checklist Vision machine",
+  ],
+  monitoring: [
+    "Communication et suivi des réclamation Interne / Externe et fonctionnement de Quality-Gate",
+    "Suivi des problèmes Dummy Harness",
+    "CUT-OFF Error Proof US",
+    "Suivi et contrôle de travail du nouveau opérateur",
+    "Checklist Layred Process Audit: Containment Fire-Wall-CSL & FA",
+    "Carte de contrôle des défauts et Aproch FTQ /Suivi et validation de Réparation",
+    "Checklist Carte monitoring",
+    "Plan control de qualité: process/produit/monitoring",
+    "Checklist des paramètres",
+    "Carte  de contrôle: Monitoring /Process & Produit",
+    "Traitement de produit & compensant non conforme ( Chaque 2 heurs)",
+    "Validation des interventions de la maintenance(Chaque intervention de maintenance)",
+  ],
+  produit: [
+    "Prendre un câblage du produit fini prêt à envoyer",
+    "100% Emballage",
+    "100% dimensionnelles et aspect visuelles",
+    "Positionner les fils et les connecteurs s’il y a-un changement d'ingénierie",
+  ],
+};
+
 const PlaningForm = (p) => {
   const [dataForm, setDataForm] = useState({
     project: "",
@@ -76,6 +114,16 @@ const PlaningForm = (p) => {
     shift: "",
   });
   const [next, setNext] = useState(true);
+  // const handleCheckAll = () => {
+  //   const updatedCheckboxState = {};
+  //   const ids = [];
+  //   orders.forEach((order) => {
+  //     updatedCheckboxState[order.qualificationId] = true;
+  //     ids.push(order.qualificationId);
+  //   });
+  //   setCheckboxState(updatedCheckboxState);
+  //   setOrderIds(ids);
+  // };
   const onChangeHandler = (e, d) => {
     switch (d) {
       case "project":
