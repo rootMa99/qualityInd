@@ -77,4 +77,8 @@
 }
 .task input[type="checkbox"],.task label{
   cursor: pointer;
+  text-transform: uppercase;
+}
+.task label{
+  width: 100%;
 }

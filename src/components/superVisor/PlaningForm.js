@@ -80,7 +80,6 @@ const auditorJob = {
     "Checklist PUR",
     "Checklist Torque",
     "Checklist Vision machine",
-    "Checklist Vision machine",
   ],
   monitoring: [
     "Communication et suivi des réclamation Interne / Externe et fonctionnement de Quality-Gate",
@@ -113,7 +112,17 @@ const PlaningForm = (p) => {
     audit: "",
     shift: "",
   });
+  const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
+  console.log(tasks);
+  const findTask = (t) => {
+    const i = tasks.findIndex((i) => i === t);
+    if (i > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   // const handleCheckAll = () => {
   //   const updatedCheckboxState = {};
   //   const ids = [];
@@ -156,6 +165,30 @@ const PlaningForm = (p) => {
       return;
     }
     //http request post
+  };
+
+  const onchangeHandlercb = (e, i) => {
+    if (e.target.checked) {
+      setTasks((p) => [...p, i]);
+    }
+    if (!e.target.checked) {
+      setTasks((p) => p.filter((f) => f !== i));
+    }
+  };
+
+  const checkAll = (e, t) => {
+    if (e.target.checked) {
+      auditorJob[t].forEach((el) => {
+        if (!findTask(el)) {
+          setTasks((p) => [...p, el]);
+        }
+      });
+    }
+    if (!e.target.checked) {
+      auditorJob[t].forEach((el) => {
+        setTasks((p) => p.filter((f) => f !== el));
+      });
+    }
   };
 
   return (
@@ -237,28 +270,100 @@ const PlaningForm = (p) => {
             <div className={c.taskType}>
               <h4>process</h4>
               <div className={c.tasks}>
-                {auditorJob.process.map((m,i)=><div className={c.task}>
-                  <input id={m} type="checkbox" />
-                  <label htmlFor={m} >{m}</label>
-                </div>)}
+                <div className={c.task}>
+                  <input
+                    id={"all"}
+                    type="checkbox"
+                    onChange={(e) => checkAll(e, "process")}
+                  />
+                  <label htmlFor={"all"}>{"all"}</label>
+                </div>
+                {auditorJob.process.map((m, i) => (
+                  <div className={c.task}>
+                    <input
+                      id={m}
+                      type="checkbox"
+                      onChange={(e) => onchangeHandlercb(e, m)}
+                      checked={findTask(m)}
+                    />
+                    <label
+                      htmlFor={m}
+                      style={
+                        findTask(m)
+                          ? { color: "#f33716" }
+                          : { color: "aliceblue" }
+                      }
+                    >
+                      {m}
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
             <div className={c.taskType}>
-            <h4>process</h4>
-            <div className={c.tasks}>
-              {auditorJob.monitoring.map((m,i)=><div className={c.task}>
-                <input id={m} type="checkbox" />
-                <label htmlFor={m} >{m}</label>
-              </div>)}
-            </div>
-          </div>
-          <div className={c.taskType}>
               <h4>process</h4>
               <div className={c.tasks}>
-                {auditorJob.produit.map((m,i)=><div className={c.task}>
-                  <input id={m} type="checkbox" />
-                  <label htmlFor={m} >{m}</label>
-                </div>)}
+                <div className={c.task}>
+                  <input
+                    id={"allm"}
+                    type="checkbox"
+                    onChange={(e) => checkAll(e, "monitoring")}
+                  />
+                  <label htmlFor={"allm"}>{"all"}</label>
+                </div>
+                {auditorJob.monitoring.map((m, i) => (
+                  <div className={c.task}>
+                    <input
+                      id={m}
+                      type="checkbox"
+                      onChange={(e) => onchangeHandlercb(e, m)}
+                      checked={findTask(m)}
+                    />
+                    <label
+                      htmlFor={m}
+                      style={
+                        findTask(m)
+                          ? { color: "#f33716" }
+                          : { color: "aliceblue" }
+                      }
+                    >
+                      {m}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={c.taskType}>
+              <h4>process</h4>
+              <div className={c.tasks}>
+                <div className={c.task}>
+                  <input
+                    id={"allp"}
+                    type="checkbox"
+                    onChange={(e) => checkAll(e, "produit")}
+                  />
+                  <label htmlFor={"allp"}>{"all"}</label>
+                </div>
+                {auditorJob.produit.map((m, i) => (
+                  <div className={c.task}>
+                    <input
+                      id={m}
+                      type="checkbox"
+                      onChange={(e) => onchangeHandlercb(e, m)}
+                      checked={findTask(m)}
+                    />
+                    <label
+                      htmlFor={m}
+                      style={
+                        findTask(m)
+                          ? { color: "#f33716" }
+                          : { color: "aliceblue" }
+                      }
+                    >
+                      {m}
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
