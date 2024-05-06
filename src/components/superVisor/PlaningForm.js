@@ -8,7 +8,7 @@ const customStyles = {
     ...provided,
     width: "100%",
 
-    textTransform: "none",
+    textTransform: "uppercase",
     borderRadius: "5px",
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -33,7 +33,7 @@ const customStyles = {
     fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
                     "Segoe UI Symbol"`,
-    textTransform: "none",
+    textTransform: "uppercase",
     outline: "none",
     textAlign: "center",
     "&:hover": {
@@ -106,10 +106,11 @@ const auditorJob = {
 
 const PlaningForm = (p) => {
   const [dataForm, setDataForm] = useState({
+    matricule: p.data.matricule,
     date: getCurrentWeekNumber(),
-    crew: "",
     shift: "",
   });
+  const [crew, setCrew] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
   console.log(tasks);
@@ -121,35 +122,17 @@ const PlaningForm = (p) => {
       return false;
     }
   };
-  // const handleCheckAll = () => {
-  //   const updatedCheckboxState = {};
-  //   const ids = [];
-  //   orders.forEach((order) => {
-  //     updatedCheckboxState[order.qualificationId] = true;
-  //     ids.push(order.qualificationId);
-  //   });
-  //   setCheckboxState(updatedCheckboxState);
-  //   setOrderIds(ids);
-  // };
+
   const onChangeHandler = (e, d) => {
     switch (d) {
-      case "project":
-        setDataForm((p) => ({ ...p, project: e.value }));
-        break;
-      case "family":
-        setDataForm((p) => ({ ...p, family: e.value }));
-        break;
-      case "line":
-        setDataForm((p) => ({ ...p, line: e.value }));
-        break;
-      case "crew":
-        setDataForm((p) => ({ ...p, crew: e.value }));
-        break;
-      case "audit":
-        setDataForm((p) => ({ ...p, audit: e.value }));
+      case "week":
+        setDataForm((p) => ({ ...p, date: e.target.value }));
         break;
       case "shift":
         setDataForm((p) => ({ ...p, shift: e.value }));
+        break;
+      case "crew":
+        setCrew(e.value);
         break;
       default:
         break;
@@ -188,7 +171,7 @@ const PlaningForm = (p) => {
       });
     }
   };
-  console.log(getCurrentWeekNumber());
+
   return (
     <div className={c.container}>
       <h3>{p.data.fullName}</h3>
@@ -196,10 +179,11 @@ const PlaningForm = (p) => {
         {next && (
           <div className={c.selectsContainer}>
             <div className={c.inputContainer}>
+              <label htmlFor="week">week</label>
               <input
                 id="week"
                 type="week"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => onChangeHandler(e, "week")}
                 value={dataForm.date}
               />
             </div>
@@ -222,118 +206,124 @@ const PlaningForm = (p) => {
         )}
         {!next && (
           <React.Fragment>
-            <div className={c.inputContainer}>
+            <div className={c.inputContainer} style={{ margin: "auto" }}>
               <label htmlFor="project">crew</label>
               <Select
-                options={[]}
+                options={[
+                  { label: "morning", value: "morning" },
+                  { label: "evenning", value: "evenning" },
+                  { label: "nigth", value: "nigth" },
+                ]}
                 id="project"
                 inputId="project"
                 styles={customStyles}
                 placeholder="SELECT CREW"
-                onChange={(e) => onChangeHandler(e, "project")}
+                onChange={(e) => onChangeHandler(e, "crew")}
               />
             </div>
-            <div className={c.tasksHolder}>
-              <div className={c.taskType}>
-                <h4>process</h4>
-                <div className={c.tasks}>
-                  <div className={c.task}>
-                    <input
-                      id={"all"}
-                      type="checkbox"
-                      onChange={(e) => checkAll(e, "process")}
-                    />
-                    <label htmlFor={"all"}>{"check all"}</label>
-                  </div>
-                  {auditorJob.process.map((m, i) => (
-                    <div className={c.task} key={i}>
+            {crew && (
+              <div className={c.tasksHolder}>
+                <div className={c.taskType}>
+                  <h4>process</h4>
+                  <div className={c.tasks}>
+                    <div className={c.task}>
                       <input
-                        id={m}
+                        id={"all"}
                         type="checkbox"
-                        onChange={(e) => onchangeHandlercb(e, m)}
-                        checked={findTask(m)}
+                        onChange={(e) => checkAll(e, "process")}
                       />
-                      <label
-                        htmlFor={m}
-                        style={
-                          findTask(m)
-                            ? { color: "#f33716", fontWeight: 700 }
-                            : { color: "aliceblue", fontWeight: "normal" }
-                        }
-                      >
-                        {m}
-                      </label>
+                      <label htmlFor={"all"}>{"check all"}</label>
                     </div>
-                  ))}
+                    {auditorJob.process.map((m, i) => (
+                      <div className={c.task} key={i}>
+                        <input
+                          id={m}
+                          type="checkbox"
+                          onChange={(e) => onchangeHandlercb(e, m)}
+                          checked={findTask(m)}
+                        />
+                        <label
+                          htmlFor={m}
+                          style={
+                            findTask(m)
+                              ? { color: "#f33716", fontWeight: 700 }
+                              : { color: "aliceblue", fontWeight: "normal" }
+                          }
+                        >
+                          {m}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className={c.taskType}>
+                  <h4>monitoring</h4>
+                  <div className={c.tasks}>
+                    <div className={c.task}>
+                      <input
+                        id={"allm"}
+                        type="checkbox"
+                        onChange={(e) => checkAll(e, "monitoring")}
+                      />
+                      <label htmlFor={"allm"}>{"check all"}</label>
+                    </div>
+                    {auditorJob.monitoring.map((m, i) => (
+                      <div className={c.task} key={i}>
+                        <input
+                          id={m}
+                          type="checkbox"
+                          onChange={(e) => onchangeHandlercb(e, m)}
+                          checked={findTask(m)}
+                        />
+                        <label
+                          htmlFor={m}
+                          style={
+                            findTask(m)
+                              ? { color: "#f33716", fontWeight: 700 }
+                              : { color: "aliceblue", fontWeight: "normal" }
+                          }
+                        >
+                          {m}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className={c.taskType}>
+                  <h4>produit</h4>
+                  <div className={c.tasks}>
+                    <div className={c.task}>
+                      <input
+                        id={"allp"}
+                        type="checkbox"
+                        onChange={(e) => checkAll(e, "produit")}
+                      />
+                      <label htmlFor={"allp"}>{"check all"}</label>
+                    </div>
+                    {auditorJob.produit.map((m, i) => (
+                      <div className={c.task} key={i}>
+                        <input
+                          id={m}
+                          type="checkbox"
+                          onChange={(e) => onchangeHandlercb(e, m)}
+                          checked={findTask(m)}
+                        />
+                        <label
+                          htmlFor={m}
+                          style={
+                            findTask(m)
+                              ? { color: "#f33716", fontWeight: 700 }
+                              : { color: "aliceblue", fontWeight: "normal" }
+                          }
+                        >
+                          {m}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div className={c.taskType}>
-                <h4>monitoring</h4>
-                <div className={c.tasks}>
-                  <div className={c.task}>
-                    <input
-                      id={"allm"}
-                      type="checkbox"
-                      onChange={(e) => checkAll(e, "monitoring")}
-                    />
-                    <label htmlFor={"allm"}>{"check all"}</label>
-                  </div>
-                  {auditorJob.monitoring.map((m, i) => (
-                    <div className={c.task} key={i}>
-                      <input
-                        id={m}
-                        type="checkbox"
-                        onChange={(e) => onchangeHandlercb(e, m)}
-                        checked={findTask(m)}
-                      />
-                      <label
-                        htmlFor={m}
-                        style={
-                          findTask(m)
-                            ? { color: "#f33716", fontWeight: 700 }
-                            : { color: "aliceblue", fontWeight: "normal" }
-                        }
-                      >
-                        {m}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className={c.taskType}>
-                <h4>produit</h4>
-                <div className={c.tasks}>
-                  <div className={c.task}>
-                    <input
-                      id={"allp"}
-                      type="checkbox"
-                      onChange={(e) => checkAll(e, "produit")}
-                    />
-                    <label htmlFor={"allp"}>{"check all"}</label>
-                  </div>
-                  {auditorJob.produit.map((m, i) => (
-                    <div className={c.task} key={i}>
-                      <input
-                        id={m}
-                        type="checkbox"
-                        onChange={(e) => onchangeHandlercb(e, m)}
-                        checked={findTask(m)}
-                      />
-                      <label
-                        htmlFor={m}
-                        style={
-                          findTask(m)
-                            ? { color: "#f33716", fontWeight: 700 }
-                            : { color: "aliceblue", fontWeight: "normal" }
-                        }
-                      >
-                        {m}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            )}
           </React.Fragment>
         )}
         <button type="submit">{next ? "next" : "submit"}</button>

@@ -23,9 +23,12 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  flex-direction: column;
 }
 .inputContainer {
   width: 45%;
+  display: flex;
+  flex-direction: column;
 }
 .inputContainer label {
   color: white;
@@ -34,13 +37,14 @@
   font-size: small;
 }
 .inputContainer input[type="week"]{
-  width: 30%;
+  width: 40%;
   padding: 5px;
   text-align: center;
   background-color: black;
   border: 1px solid #8a8989;
   border-radius: 10px;
   color: aliceblue;
+  margin: auto;
 }
 .inputContainer input[type="week"]:hover{
   border: 1px solid #f33716;
