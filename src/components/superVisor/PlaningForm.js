@@ -237,44 +237,28 @@ const PlaningForm = (p) => {
             <div className={c.taskType}>
               <h4>process</h4>
               <div className={c.tasks}>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
+                {auditorJob.process.map((m,i)=><div className={c.task}>
+                  <input id={m} type="checkbox" />
+                  <label htmlFor={m} >{m}</label>
+                </div>)}
               </div>
             </div>
             <div className={c.taskType}>
-              <h4>product</h4>
-              <div className={c.tasks}>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
-              </div>
+            <h4>process</h4>
+            <div className={c.tasks}>
+              {auditorJob.monitoring.map((m,i)=><div className={c.task}>
+                <input id={m} type="checkbox" />
+                <label htmlFor={m} >{m}</label>
+              </div>)}
             </div>
-            <div className={c.taskType}>
-              <h4>monitoring</h4>
+          </div>
+          <div className={c.taskType}>
+              <h4>process</h4>
               <div className={c.tasks}>
-                <div className={c.task}>
-                  <input type="checkbox" />
-                  <label>task1</label>
-                </div>
+                {auditorJob.produit.map((m,i)=><div className={c.task}>
+                  <input id={m} type="checkbox" />
+                  <label htmlFor={m} >{m}</label>
+                </div>)}
               </div>
             </div>
           </div>

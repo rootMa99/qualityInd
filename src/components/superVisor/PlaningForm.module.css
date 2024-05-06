@@ -63,3 +63,18 @@
     text-transform: uppercase;
     color: #f33716;
 }
+.tasks{
+  text-align: left;
+}
+.task{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.task:hover{
+  transform: scale(1.03);
+  color: #f33716;
+}
+.task input[type="checkbox"],.task label{
+  cursor: pointer;
+}
