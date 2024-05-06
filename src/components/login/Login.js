@@ -40,7 +40,7 @@ const Login = () => {
     <React.Fragment>
       <div className={c.cont}>
         <span className={c.cer}> </span>
-        <h1 className={c.titlte}>quality ind app</h1>
+        <h1 className={c.titlte}>quality Standardize board app</h1>
         <span className={c.cer}> </span>
       </div>
       <form className={c["Form-container"]} onSubmit={ClickHandler}>
