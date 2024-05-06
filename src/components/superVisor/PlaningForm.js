@@ -111,9 +111,10 @@ const PlaningForm = (p) => {
     shift: "",
   });
   const [crew, setCrew] = useState(false);
+  const [crewTask, setCrewTask] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
-  console.log(tasks);
+  console.log(tasks, crewTask);
   const findTask = (t) => {
     const i = tasks.findIndex((i) => i === t);
     if (i > -1) {
@@ -133,6 +134,10 @@ const PlaningForm = (p) => {
         break;
       case "crew":
         setCrew(e.value);
+        const i = crewTask.findIndex((f) => f.crew === e.value);
+        if (i > -1) {
+          setTasks(crewTask[i].tasks);
+        }
         break;
       default:
         break;
@@ -143,6 +148,47 @@ const PlaningForm = (p) => {
     e.preventDefault();
     if (next) {
       setNext(false);
+      return;
+    }
+    if (!crew) {
+      return;
+    }
+    const confirmation = window.confirm("do you want to add crews?");
+    if (confirmation) {
+      if (crewTask.length > 0) {
+        const i = crewTask.findIndex((f) => f.crew === crew);
+        console.log(i);
+        if (i > -1) {
+          console.log("found");
+          setCrewTask((p) => [
+            ...p.filter((f) => f.crew !== crew),
+            {
+              crew: crew,
+              tasks: tasks,
+            },
+          ]);
+        } else {
+          console.log("not found");
+          setCrewTask((p) => [
+            ...p,
+            {
+              crew: crew,
+              tasks: tasks,
+            },
+          ]);
+        }
+      } else {
+        setCrewTask((p) => [
+          ...p,
+          {
+            crew: crew,
+            tasks: tasks,
+          },
+        ]);
+      }
+
+      setCrew(false);
+      setTasks([]);
       return;
     }
     //http request post
@@ -218,6 +264,7 @@ const PlaningForm = (p) => {
                 inputId="project"
                 styles={customStyles}
                 placeholder="SELECT CREW"
+                value={!crew ? {} : { label: crew, value: crew }}
                 onChange={(e) => onChangeHandler(e, "crew")}
               />
             </div>
