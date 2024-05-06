@@ -147,7 +147,9 @@ const PlaningForm = (p) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (next) {
-      setNext(false);
+      if(dataForm.shift.trim()!==""){
+        setNext(false);
+      }
       return;
     }
     if (!crew) {
@@ -190,8 +192,12 @@ const PlaningForm = (p) => {
       setCrew(false);
       setTasks([]);
       return;
+    }else{
+
     }
+
     //http request post
+
   };
 
   const onchangeHandlercb = (e, i) => {
@@ -266,6 +272,7 @@ const PlaningForm = (p) => {
                 placeholder="SELECT CREW"
                 value={!crew ? {} : { label: crew, value: crew }}
                 onChange={(e) => onChangeHandler(e, "crew")}
+                
               />
             </div>
             {crew && (
