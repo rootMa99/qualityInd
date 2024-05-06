@@ -33,52 +33,58 @@
   font-weight: 100;
   font-size: small;
 }
-.form button{
-    width: 90%;
-    background-color: black;
-    border: 1px solid #8a8989;
-    border-radius: 10px;
-    color: #8a8989;
-    text-transform: uppercase;
-    padding: 10px 0;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-weight: bold;
+.form button {
+  width: 90%;
+  background-color: black;
+  border: 1px solid #8a8989;
+  border-radius: 10px;
+  color: #8a8989;
+  text-transform: uppercase;
+  padding: 10px 0;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
 }
-.form button:hover{
-    background-color: rgb(31, 30, 30);
-    transform: scale(1.02);
-    border: 1px solid #f33716;
-    color: #f33716;
+.form button:hover {
+  background-color: rgb(31, 30, 30);
+  transform: scale(1.02);
+  border: 1px solid #f33716;
+  color: #f33716;
 }
-.tasksHolder{
-    width: 100%;
-    display: flex;
+.tasksHolder {
+  width: 100%;
+  display: flex;
 }
-.taskType{
-    width: 33%;
-    color: aliceblue;
+.taskType {
+  width: 33%;
+  color: aliceblue;
 }
-.taskType h4{
-    text-transform: uppercase;
-    color: #f33716;
+.taskType h4 {
+  text-transform: uppercase;
+  color: #f33716;
 }
-.tasks{
+.tasks {
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
 }
-.task{
+.task {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-.task:hover{
-  transform: scale(1.03);
-  color: #f33716;
-}
-.task input[type="checkbox"],.task label{
+
+.task input[type="checkbox"],
+.task label {
   cursor: pointer;
   text-transform: uppercase;
 }
-.task label{
+.task label {
   width: 100%;
+}
+.task:hover {
+  transform: scale(1.03);
+  color: #f33716;
 }
