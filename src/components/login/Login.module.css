@@ -18,8 +18,8 @@
   animation-iteration-count: ease-in; */
 }
 .cer {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 2rem;
+  height: 2rem;
   z-index: 1;
   background-color: #f84018;
   border-radius: 50%;
@@ -102,16 +102,4 @@
 .Login:hover {
   background: #000000;
   border: 2px solid #000;
-}
-.videoBg {
-  object-fit: cover;
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  margin: 3rem 0 0 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  filter: blur(20px);
 }
