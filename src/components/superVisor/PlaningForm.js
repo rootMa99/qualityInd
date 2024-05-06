@@ -279,7 +279,7 @@ const PlaningForm = (p) => {
                   <label htmlFor={"all"}>{"check all"}</label>
                 </div>
                 {auditorJob.process.map((m, i) => (
-                  <div className={c.task}>
+                  <div className={c.task} key={i}>
                     <input
                       id={m}
                       type="checkbox"
@@ -290,8 +290,8 @@ const PlaningForm = (p) => {
                       htmlFor={m}
                       style={
                         findTask(m)
-                          ? { color: "#f33716" }
-                          : { color: "aliceblue" }
+                          ? { color: "#f33716", fontWeight: 700 }
+                          : { color: "aliceblue", fontWeight: "normal" }
                       }
                     >
                       {m}
@@ -312,7 +312,7 @@ const PlaningForm = (p) => {
                   <label htmlFor={"allm"}>{"check all"}</label>
                 </div>
                 {auditorJob.monitoring.map((m, i) => (
-                  <div className={c.task}>
+                  <div className={c.task} key={i}>
                     <input
                       id={m}
                       type="checkbox"
@@ -323,8 +323,8 @@ const PlaningForm = (p) => {
                       htmlFor={m}
                       style={
                         findTask(m)
-                          ? { color: "#f33716" }
-                          : { color: "aliceblue" }
+                          ? { color: "#f33716", fontWeight: 700 }
+                          : { color: "aliceblue", fontWeight: "normal" }
                       }
                     >
                       {m}
@@ -345,7 +345,7 @@ const PlaningForm = (p) => {
                   <label htmlFor={"allp"}>{"check all"}</label>
                 </div>
                 {auditorJob.produit.map((m, i) => (
-                  <div className={c.task}>
+                  <div className={c.task} key={i}>
                     <input
                       id={m}
                       type="checkbox"
@@ -356,8 +356,8 @@ const PlaningForm = (p) => {
                       htmlFor={m}
                       style={
                         findTask(m)
-                          ? { color: "#f33716" }
-                          : { color: "aliceblue" }
+                          ? { color: "#f33716", fontWeight: 700 }
+                          : { color: "aliceblue", fontWeight: "normal" }
                       }
                     >
                       {m}

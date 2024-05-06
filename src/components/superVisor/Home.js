@@ -29,9 +29,11 @@ const Home = (p) => {
       <h1 className={c.title}>Auditors list</h1>
       <table className={c.table}>
         <thead>
-          <th>matricule</th>
-          <th>fullName</th>
-          <th colSpan={2}></th>
+          <tr>
+            <th>matricule</th>
+            <th>fullName</th>
+            <th colSpan={2}></th>
+          </tr>
         </thead>
         <tbody>
           {auditData.map((m) => (
