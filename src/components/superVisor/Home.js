@@ -25,7 +25,7 @@ const Home = (p) => {
   return (
     <div className={c.container}>
       {planify && <BackDrop click={close} />}
-      {planify && <PlaningForm data={planify} />}
+      {planify && <PlaningForm data={planify} click={close}/>}
       <h1 className={c.title}>Auditors list</h1>
       <table className={c.table}>
         <thead>

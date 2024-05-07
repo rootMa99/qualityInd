@@ -222,6 +222,7 @@ const PlaningForm = (p) => {
       return;
     } else {
       const i = crewTask.findIndex((f) => f.crew === crew);
+      let ct = crewTask;
       if (i > -1) {
         setCrewTask((p) => [
           ...p.filter((f) => f.crew !== crew),
@@ -230,6 +231,13 @@ const PlaningForm = (p) => {
             tasks: tasks,
           },
         ]);
+        ct = [
+          ...crewTask.filter((f) => f.crew !== crew),
+          {
+            crew: crew,
+            tasks: tasks,
+          },
+        ];
       } else {
         setCrewTask((p) => [
           ...p,
@@ -238,12 +246,19 @@ const PlaningForm = (p) => {
             tasks: tasks,
           },
         ]);
+        ct = [
+          ...crewTask,
+          {
+            crew: crew,
+            tasks: tasks,
+          },
+        ];
       }
       const body = {
         username: dataForm.matricule,
         week: dataForm.date,
         shift: dataForm.shift,
-        plans: [...crewTask],
+        plans: [...ct],
       };
       console.log(body);
       try {
@@ -260,6 +275,7 @@ const PlaningForm = (p) => {
         }
         const data = await response.json();
         console.log(data);
+        p.click();
       } catch (e) {
         setErr(true);
         console.error(e);
