@@ -1,6 +1,6 @@
 import Select from "react-select";
 import c from "./PlaningForm.module.css";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getCurrentWeekNumber } from "../hooks/hfunc";
 
 const customStyles = {
@@ -114,7 +114,14 @@ const PlaningForm = (p) => {
   const [crewTask, setCrewTask] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
-  console.log(tasks, crewTask);
+  console.log(tasks, crewTask, dataForm);
+
+
+  const callback= useCallback(()=>{
+    
+  }, [])
+  useEffect(()=>{callback()}, [callback])
+
   const findTask = (t) => {
     const i = tasks.findIndex((i) => i === t);
     if (i > -1) {
@@ -272,7 +279,7 @@ const PlaningForm = (p) => {
                 placeholder="SELECT CREW"
                 value={!crew ? {} : { label: crew, value: crew }}
                 onChange={(e) => onChangeHandler(e, "crew")}
-                
+
               />
             </div>
             {crew && (
