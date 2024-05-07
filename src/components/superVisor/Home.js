@@ -38,7 +38,7 @@ const Home = (p) => {
 
   const deletAudit = (e, m) => {
     //http req delete
-    setAudit(auditData.filter((f) => f.matricule !== m));
+    setAudit(auditData.filter((f) => f.username !== m));
   };
 
   const planifyAudit = (e, m) => {
@@ -72,7 +72,7 @@ const Home = (p) => {
               </td>
               <td
                 className={c.delete}
-                onClick={(e) => deletAudit(e, m.matricule)}
+                onClick={(e) => deletAudit(e, m.username)}
               >
                 delete
               </td>
