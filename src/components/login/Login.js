@@ -1,39 +1,66 @@
 import React, { useState } from "react";
 import c from "./Login.module.css";
-import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
-import { USERS } from "../../DemoData";
+import api from "../../service/api";
 import { loginActions } from "../../store/loginSlice";
+import NetworkNotify from "../UI/NetworkNotify";
 
 const Login = () => {
   const [loginCred, setLogingCred] = useState({
-    name: "",
-    pwd: "",
+    username: "",
+    password: "",
   });
   const [err, setErr] = useState(false);
   const dispatch = useDispatch();
 
   const ClickHandler = async (e) => {
     e.preventDefault();
-    const data= USERS.filter(f=>f.userName===loginCred.name);
 
-    if(data.length>0){
-      dispatch(loginActions.logIn(data[0]));
+    if (loginCred.username.trim() === "" || loginCred.password.trim() === "") {
+      alert("please make sure all field not empty");
+      return;
     }
+    try {
+      const response = await fetch(`${api}/auth/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginCred),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+      dispatch(
+        loginActions.logIn({
+          role: data.user.role,
+          userName: data.user.fullname,
+          token: data.token,
+        })
+      );
+    } catch (e) {
+      setErr(true);
+      console.error(e);
+    }
+    // if(data.length>0){
+    //   dispatch(loginActions.logIn(data[0]));
+    // }
   };
 
   const nameChangeHadler = (e) => {
-    setLogingCred((p) => ({ ...p, name: e.target.value }));
+    setLogingCred((p) => ({ ...p, username: e.target.value }));
   };
 
   const pwdChangeHadler = (e) => {
-    setLogingCred((p) => ({ ...p, pwd: e.target.value }));
+    setLogingCred((p) => ({ ...p, password: e.target.value }));
   };
 
   if (err) {
     setTimeout(() => {
       setErr(false);
-    }, 10000);
+    }, 3000);
   }
 
   return (
@@ -73,7 +100,7 @@ const Login = () => {
         <button className={c["Login"]}>Submit</button>
       </form>
       {err && (
-        <Notification
+        <NetworkNotify
           message="The username or password you entered is incorrect.
          Please double-check your credentials and try again."
         />

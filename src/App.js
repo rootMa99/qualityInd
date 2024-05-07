@@ -16,8 +16,8 @@ function App() {
       {
         <React.Fragment>
         {!isLoged.login && <Login />}
-        {isLoged.login && isLoged.role==="audit" && <Auditor /> }
-        {isLoged.login && isLoged.role==="sp" && <SuperVisor /> }
+        {isLoged.login && isLoged.role==="Auditor" && <Auditor /> }
+        {isLoged.login && isLoged.role==="Supervisor" && <SuperVisor /> }
         {isLoged.login && isLoged.role==="monitor" && <Monitor /> }
         </React.Fragment>
          

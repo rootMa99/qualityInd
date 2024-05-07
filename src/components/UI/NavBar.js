@@ -31,7 +31,7 @@ const NavBar = (p) => {
                 home
               </NavLink>
             </li>
-            {(isLoged.role === "sp" || isLoged.role === "monitor") && (
+            {(isLoged.role ==="Supervisor" || isLoged.role === "monitor") && (
               <li>
                 <NavLink
                   to="/dashboard"

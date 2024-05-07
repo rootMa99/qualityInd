@@ -114,11 +114,11 @@ const PlaningForm = (p) => {
   const [crewTask, setCrewTask] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
-  console.log(tasks, crewTask, dataForm);
+  console.log(tasks, crewTask);
 
 
   const callback= useCallback(()=>{
-    
+
   }, [])
   useEffect(()=>{callback()}, [callback])
 
