@@ -44,9 +44,6 @@ const Login = () => {
       setErr(true);
       console.error(e);
     }
-    // if(data.length>0){
-    //   dispatch(loginActions.logIn(data[0]));
-    // }
   };
 
   const nameChangeHadler = (e) => {

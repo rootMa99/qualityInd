@@ -2,6 +2,8 @@ import Select from "react-select";
 import c from "./PlaningForm.module.css";
 import React, { useCallback, useEffect, useState } from "react";
 import { getCurrentWeekNumber } from "../hooks/hfunc";
+import api from "../../service/api";
+import { useSelector } from "react-redux";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -104,6 +106,17 @@ const auditorJob = {
   ],
 };
 
+
+const handySelect=d=>{
+  const rd=[]
+  try{
+    d.map(m=> rd.push({ label:m.crew , value: m.crew}))
+    return rd;
+  }catch(e){
+    return [];
+  }
+}
+
 const PlaningForm = (p) => {
   const [dataForm, setDataForm] = useState({
     matricule: p.data.matricule,
@@ -114,13 +127,48 @@ const PlaningForm = (p) => {
   const [crewTask, setCrewTask] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
-  console.log(tasks, crewTask);
+  const [dataList, setDataList] = useState({ crews: [], tasks: [] });
+  const { isLoged } = useSelector((s) => s.login);
+  console.log(tasks, crewTask, {...dataForm, ...crewTask});
 
-
-  const callback= useCallback(()=>{
-
-  }, [])
-  useEffect(()=>{callback()}, [callback])
+  const callback = useCallback(async () => {
+    try {
+      const response = await fetch(`${api}/location`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+      setDataList(p=>({...p, crews:data}))
+    } catch (e) {
+      console.error(e);
+    }
+    try {
+      const response = await fetch(`${api}/task/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [isLoged.token]);
+  useEffect(() => {
+    callback();
+  }, [callback]);
 
   const findTask = (t) => {
     const i = tasks.findIndex((i) => i === t);
@@ -154,7 +202,7 @@ const PlaningForm = (p) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (next) {
-      if(dataForm.shift.trim()!==""){
+      if (dataForm.shift.trim() !== "") {
         setNext(false);
       }
       return;
@@ -199,12 +247,10 @@ const PlaningForm = (p) => {
       setCrew(false);
       setTasks([]);
       return;
-    }else{
-
+    } else {
     }
 
     //http request post
-
   };
 
   const onchangeHandlercb = (e, i) => {
@@ -268,18 +314,13 @@ const PlaningForm = (p) => {
             <div className={c.inputContainer} style={{ margin: "auto" }}>
               <label htmlFor="project">crew</label>
               <Select
-                options={[
-                  { label: "morning", value: "morning" },
-                  { label: "evenning", value: "evenning" },
-                  { label: "nigth", value: "nigth" },
-                ]}
+                options={handySelect(dataList.crews)}
                 id="project"
                 inputId="project"
                 styles={customStyles}
                 placeholder="SELECT CREW"
                 value={!crew ? {} : { label: crew, value: crew }}
                 onChange={(e) => onChangeHandler(e, "crew")}
-
               />
             </div>
             {crew && (
