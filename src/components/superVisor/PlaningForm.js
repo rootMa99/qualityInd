@@ -69,7 +69,7 @@ const customStyles = {
   }),
 };
 
-const auditorJob = {
+const auditorJobs = {
   process: [
     "Checklist Table Pre-control",
     "Checklist d’étenchiète",
@@ -106,16 +106,15 @@ const auditorJob = {
   ],
 };
 
-
-const handySelect=d=>{
-  const rd=[]
-  try{
-    d.map(m=> rd.push({ label:m.crew , value: m.crew}))
+const handySelect = (d) => {
+  const rd = [];
+  try {
+    d.map((m) => rd.push({ label: m.crew, value: m.crew }));
     return rd;
-  }catch(e){
+  } catch (e) {
     return [];
   }
-}
+};
 
 const PlaningForm = (p) => {
   const [dataForm, setDataForm] = useState({
@@ -127,9 +126,14 @@ const PlaningForm = (p) => {
   const [crewTask, setCrewTask] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [next, setNext] = useState(true);
+  const [auditorJob, setAuditorJob] = useState({
+    monitoring: [],
+    process: [],
+    produit: [],
+  });
   const [dataList, setDataList] = useState({ crews: [], tasks: [] });
   const { isLoged } = useSelector((s) => s.login);
-  console.log(tasks, crewTask, {...dataForm, ...crewTask});
+  console.log(tasks, crewTask, { ...dataForm, ...crewTask });
 
   const callback = useCallback(async () => {
     try {
@@ -145,7 +149,7 @@ const PlaningForm = (p) => {
       }
       const data = await response.json();
       console.log(data);
-      setDataList(p=>({...p, crews:data}))
+      setDataList((p) => ({ ...p, crews: data }));
     } catch (e) {
       console.error(e);
     }
@@ -162,6 +166,11 @@ const PlaningForm = (p) => {
       }
       const data = await response.json();
       console.log(data);
+      setAuditorJob({
+        monitoring: data.MONITORING,
+        process: data.PROCESS,
+        produit: data.PRODUIT,
+      });
     } catch (e) {
       console.error(e);
     }
@@ -265,14 +274,14 @@ const PlaningForm = (p) => {
   const checkAll = (e, t) => {
     if (e.target.checked) {
       auditorJob[t].forEach((el) => {
-        if (!findTask(el)) {
-          setTasks((p) => [...p, el]);
+        if (!findTask(el._id)) {
+          setTasks((p) => [...p, el._id]);
         }
       });
     }
     if (!e.target.checked) {
       auditorJob[t].forEach((el) => {
-        setTasks((p) => p.filter((f) => f !== el));
+        setTasks((p) => p.filter((f) => f !== el._id));
       });
     }
   };
@@ -321,6 +330,7 @@ const PlaningForm = (p) => {
                 placeholder="SELECT CREW"
                 value={!crew ? {} : { label: crew, value: crew }}
                 onChange={(e) => onChangeHandler(e, "crew")}
+                isDisabled={crew}
               />
             </div>
             {crew && (
@@ -336,23 +346,23 @@ const PlaningForm = (p) => {
                       />
                       <label htmlFor={"all"}>{"check all"}</label>
                     </div>
-                    {auditorJob.process.map((m, i) => (
-                      <div className={c.task} key={i}>
+                    {auditorJob.process.map((m) => (
+                      <div className={c.task} key={m._id}>
                         <input
-                          id={m}
+                          id={m._id}
                           type="checkbox"
-                          onChange={(e) => onchangeHandlercb(e, m)}
-                          checked={findTask(m)}
+                          onChange={(e) => onchangeHandlercb(e, m._id)}
+                          checked={findTask(m._id)}
                         />
                         <label
-                          htmlFor={m}
+                          htmlFor={m._id}
                           style={
-                            findTask(m)
+                            findTask(m._id)
                               ? { color: "#f33716", fontWeight: 700 }
                               : { color: "aliceblue", fontWeight: "normal" }
                           }
                         >
-                          {m}
+                          {m.task}
                         </label>
                       </div>
                     ))}
@@ -370,22 +380,22 @@ const PlaningForm = (p) => {
                       <label htmlFor={"allm"}>{"check all"}</label>
                     </div>
                     {auditorJob.monitoring.map((m, i) => (
-                      <div className={c.task} key={i}>
+                      <div className={c.task} key={m._id}>
                         <input
-                          id={m}
+                          id={m._id}
                           type="checkbox"
-                          onChange={(e) => onchangeHandlercb(e, m)}
-                          checked={findTask(m)}
+                          onChange={(e) => onchangeHandlercb(e, m._id)}
+                          checked={findTask(m._id)}
                         />
                         <label
-                          htmlFor={m}
+                          htmlFor={m._id}
                           style={
-                            findTask(m)
+                            findTask(m._id)
                               ? { color: "#f33716", fontWeight: 700 }
                               : { color: "aliceblue", fontWeight: "normal" }
                           }
                         >
-                          {m}
+                          {m.task}
                         </label>
                       </div>
                     ))}
@@ -403,22 +413,22 @@ const PlaningForm = (p) => {
                       <label htmlFor={"allp"}>{"check all"}</label>
                     </div>
                     {auditorJob.produit.map((m, i) => (
-                      <div className={c.task} key={i}>
+                      <div className={c.task} key={m._id}>
                         <input
-                          id={m}
+                          id={m._id}
                           type="checkbox"
-                          onChange={(e) => onchangeHandlercb(e, m)}
-                          checked={findTask(m)}
+                          onChange={(e) => onchangeHandlercb(e, m._id)}
+                          checked={findTask(m._id)}
                         />
                         <label
-                          htmlFor={m}
+                          htmlFor={m._id}
                           style={
-                            findTask(m)
+                            findTask(m._id)
                               ? { color: "#f33716", fontWeight: 700 }
                               : { color: "aliceblue", fontWeight: "normal" }
                           }
                         >
-                          {m}
+                          {m.task}
                         </label>
                       </div>
                     ))}
