@@ -9,7 +9,7 @@ const Home = (p) => {
   const [auditData, setAudit] = useState(AUDITOR);
   const [planify, setPlanify] = useState(false);
   const { isLoged } = useSelector((s) => s.login);
-  //http request
+
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/user`, {
@@ -37,7 +37,6 @@ const Home = (p) => {
 
 
   const deletAudit = (e, m) => {
-    //http req delete
     setAudit(auditData.filter((f) => f.username !== m));
   };
 
