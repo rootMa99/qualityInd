@@ -151,7 +151,7 @@ const PlaningForm = (p) => {
       return false;
     }
   };
-console.log("updated repo")
+
   const onChangeHandler = (e, d) => {
     switch (d) {
       case "week":
