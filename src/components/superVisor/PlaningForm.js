@@ -82,7 +82,7 @@ const handySelect = (d) => {
 
 const PlaningForm = (p) => {
   const [dataForm, setDataForm] = useState({
-    matricule: p.data.matricule,
+    matricule: p.data.username,
     date: getCurrentWeekNumber(),
     shift: "",
   });
@@ -319,7 +319,7 @@ const PlaningForm = (p) => {
         <NetworkNotify message="we encountred an error please try again!" />
       )}
       <div className={c.container}>
-        <h3>{p.data.fullName}</h3>
+        <h3>{p.data.fullname}</h3>
         <form className={c.form} onSubmit={onSubmitHandler}>
           {next && (
             <div className={c.selectsContainer}>

@@ -1,13 +1,40 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AUDITOR } from "../../DemoData";
 import c from "./Home.module.css";
 import BackDrop from "../UI/BackDrop";
 import PlaningForm from "./PlaningForm";
-
+import { useSelector } from "react-redux";
+import api from "../../service/api";
 const Home = (p) => {
   const [auditData, setAudit] = useState(AUDITOR);
   const [planify, setPlanify] = useState(false);
+  const { isLoged } = useSelector((s) => s.login);
   //http request
+  const callback = useCallback(async () => {
+    try {
+      const response = await fetch(`${api}/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+      setAudit(data.users)
+    } catch (e) {
+      console.error(e);
+    }
+
+  }, [isLoged.token]);
+  useEffect(() => {
+    callback();
+  }, [callback]);
+
+
 
   const deletAudit = (e, m) => {
     //http req delete
@@ -37,9 +64,9 @@ const Home = (p) => {
         </thead>
         <tbody>
           {auditData.map((m) => (
-            <tr key={m.matricule}>
-              <td>{m.matricule}</td>
-              <td>{m.fullName}</td>
+            <tr key={m.username}>
+              <td>{m.username}</td>
+              <td>{m.fullname}</td>
               <td className={c.plaify} onClick={(e) => planifyAudit(e, m)}>
                 planify
               </td>
