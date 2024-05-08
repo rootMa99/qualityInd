@@ -26,11 +26,13 @@
 }
 .taskContariner {
   width: 100%;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid #f84018;
+  padding-bottom: 0;
 }
 .details,
 .action {
@@ -50,7 +52,9 @@
   flex-direction: row;
   justify-content: space-around;
 }
-
+.details{
+    padding: 10px;
+}
 .til {
   color: #f84018;
   font-weight: bold;
@@ -67,7 +71,6 @@
 }
 .action {
   justify-content: space-around;
-  padding: 10px;
   text-transform: uppercase;
 }
 .dataDet {

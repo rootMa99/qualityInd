@@ -33,7 +33,7 @@ const Home = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
-
+  
   return (
     <div className={c.container}>
       <ul className={c.underList}>
@@ -53,7 +53,9 @@ const Home = (p) => {
           ))}
       </ul>
       {data.length > 0 &&
-        data[0].tasks.map((m) => <Task crew={data[0].crew} data={m} key={m._id} />)}
+        data[0].tasks.map((m) => (
+          <Task crew={data[0].crew} data={m} key={m._id} />
+        ))}
     </div>
   );
 };

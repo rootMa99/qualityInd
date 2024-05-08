@@ -1,17 +1,35 @@
 import c from "./Home.module.css";
 
+const styleBg = (s) => {
+  if (s === "NA") {
+    return {
+      backgroundColor: "#929D96",
+    };
+  }
+  if (s === "NOK") {
+    return {
+      backgroundColor: "#CF3335",
+    };
+  }
+  if (s === "OK") {
+    return {
+      backgroundColor: "#006B63",
+    };
+  }
+};
+
 const Task = (p) => {
   console.log(p.data);
   return (
     <div className={c.taskContariner}>
-      <div className={c.details}>
+      <div className={c.details} style={styleBg(p.data.result)}>
+        <div className={c.cat}>
+          <span className={c.til}>cat</span>
+          <span className={c.dataDet}>{p.data.category}</span>
+        </div>
         <div className={c.sequ}>
           <span className={c.til}>Seq</span>
           <span className={c.dataDet}>{p.data.sequence} </span>
-        </div>
-        <div className={c.cat}>
-          <span className={c.til}>category</span>
-          <span className={c.dataDet}>{p.data.category}</span>
         </div>
         <div className={c.task}>
           <span className={c.til}>task</span>
@@ -20,7 +38,18 @@ const Task = (p) => {
       </div>
       <div className={c.action}>
         <div className={c.sequs}>ok</div>
-        <div className={c.sequs}>na</div>
+        <div
+          className={c.sequs}
+          style={
+            p.data.result === "NA"
+              ? {
+                  backgroundColor: "#929D96",
+                }
+              : {}
+          }
+        >
+          na
+        </div>
         <div className={c.sequs}>nok</div>
       </div>
     </div>
