@@ -37,7 +37,19 @@ const Task = (p) => {
         </div>
       </div>
       <div className={c.action}>
-        <div className={c.sequs}>ok</div>
+        <div
+          className={c.sequsok}
+          style={
+            p.data.result === "OK"
+              ? {
+                  backgroundColor: "#006B63",
+                  color:'white'
+                }
+              : {}
+          }
+        >
+          ok
+        </div>
         <div
           className={c.sequs}
           style={
@@ -50,7 +62,19 @@ const Task = (p) => {
         >
           na
         </div>
-        <div className={c.sequs}>nok</div>
+        <div
+          className={c.sequsnk}
+          style={
+            p.data.result === "NOK"
+              ? {
+                  backgroundColor: "#CF3335",
+                  color:'white'
+                }
+              : {}
+          }
+        >
+          nok
+        </div>
       </div>
     </div>
   );

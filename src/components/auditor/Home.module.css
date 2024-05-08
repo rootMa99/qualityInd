@@ -80,7 +80,7 @@
 .sequ .dataDet {
   font-size: larger;
 }
-.sequs {
+.sequs, .sequsnk, .sequsok  {
   color: aliceblue;
   height: 2rem;
   width: 33%;
@@ -88,4 +88,10 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+}
+.sequsok{
+    color: #006B63;
+}
+.sequsnk{
+    color: #CF3335;
 }
