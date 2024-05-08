@@ -63,8 +63,8 @@ const Home = (p) => {
           </tr>
         </thead>
         <tbody>
-          {auditData.map((m) => (
-            <tr key={m.username}>
+          {auditData.map((m, i) => (
+            <tr key={i}>
               <td>{m.username}</td>
               <td>{m.fullname}</td>
               <td className={c.plaify} onClick={(e) => planifyAudit(e, m)}>
