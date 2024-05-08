@@ -1,23 +1,72 @@
+.container {
+  width: 100vw;
+}
+
 .underList {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-    list-style: none;
-    width: 100%;
-    flex-wrap: wrap;
-    padding: 0;
-  }
-  .underList li {
-    font-size: medium;
-    text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.underList li {
+  font-size: medium;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: aliceblue;
+  opacity: 0.5;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.underList li:hover {
+  opacity: 1;
+}
+.taskContariner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #F84018;
+}
+.details,
+.action {
+  width: 100%;
+}
+.sequ,
+.cat,
+.task {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.details,.action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.details{
+    padding: 16px;
+}
+.til{
+    color: #F84018;
     font-weight: bold;
-    color: aliceblue;
-    opacity: 0.5;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-  }
-  .underList li:hover {
-    opacity: 1;
-  }
-  
+    text-transform: uppercase;
+}
+.sequ {
+  width: 5%;
+}
+.cat {
+  width: 15%;
+}
+.task {
+  width: 70%;
+}
+.action{
+    justify-content: space-around;
+    padding: 10px;
+    text-transform: uppercase;
+}

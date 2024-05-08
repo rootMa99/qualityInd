@@ -3,6 +3,7 @@ import c from "./Home.module.css";
 import api from "../../service/api";
 import { useSelector } from "react-redux";
 import { getCurrentWeek } from "../hooks/hfunc";
+import Task from "./Task";
 const Home = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [control, setControl] = useState(false);
@@ -51,6 +52,7 @@ const Home = (p) => {
             </li>
           ))}
       </ul>
+      <Task />
     </div>
   );
 };
