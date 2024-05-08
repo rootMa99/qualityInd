@@ -42,6 +42,7 @@
   display: flex;
   flex-direction: column;
   color: white;
+  gap: 10px;
 }
 .details,.action {
   display: flex;
@@ -63,10 +64,18 @@
   width: 15%;
 }
 .task {
-  width: 70%;
+  width: 65%;
 }
 .action{
     justify-content: space-around;
     padding: 10px;
     text-transform: uppercase;
+}
+.dataDet{
+    font-size: small;
+    word-wrap: break-word;
+
+}
+.sequ .dataDet{
+    font-size: larger;
 }

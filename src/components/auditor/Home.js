@@ -52,7 +52,8 @@ const Home = (p) => {
             </li>
           ))}
       </ul>
-      <Task />
+      {data.length > 0 &&
+        data[0].tasks.map((m) => <Task crew={data[0].crew} data={m} key={m._id} />)}
     </div>
   );
 };
