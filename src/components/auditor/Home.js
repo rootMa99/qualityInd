@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getCurrentWeek } from "../hooks/hfunc";
 import Task from "./Task";
 import erimg from "../../assets/404er.svg";
+
 const Home = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [control, setControl] = useState(false);
@@ -54,9 +55,9 @@ const Home = (p) => {
           <h3>no task found for you!</h3>
         </div>
       )}
-      <ul className={c.underList}>
-        {tasks.length > 0 &&
-          tasks.map((m) => (
+      {tasks.length > 0 && <ul className={c.underList}>
+        
+         { tasks.map((m) => (
             <li
               key={m.crew}
               style={
@@ -69,7 +70,7 @@ const Home = (p) => {
               {m.crew}
             </li>
           ))}
-      </ul>
+      </ul>}
       {data.length > 0 &&
         data[0].tasks.map((m) => (
           <Task
@@ -82,4 +83,5 @@ const Home = (p) => {
     </div>
   );
 };
+
 export default Home;
