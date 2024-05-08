@@ -19,9 +19,9 @@ const Task = (p) => {
         </div>
       </div>
       <div className={c.action}>
-        <div className={c.sequ}>ok</div>
-        <div className={c.sequ}>nok</div>
-        <div className={c.sequ}>na</div>
+        <div className={c.sequs}>ok</div>
+        <div className={c.sequs}>na</div>
+        <div className={c.sequs}>nok</div>
       </div>
     </div>
   );
