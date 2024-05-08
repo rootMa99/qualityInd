@@ -5,12 +5,12 @@ import BackDrop from "../UI/BackDrop";
 import PlaningForm from "./PlaningForm";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
-import { getCurrentWeek } from "../hooks/hfunc";
+
 const Home = (p) => {
   const [auditData, setAudit] = useState(AUDITOR);
   const [planify, setPlanify] = useState(false);
   const { isLoged } = useSelector((s) => s.login);
-console.log(getCurrentWeek())
+
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/user`, {
