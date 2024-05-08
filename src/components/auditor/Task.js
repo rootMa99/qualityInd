@@ -28,15 +28,15 @@ const Task = (p) => {
     <div className={c.taskContariner}>
       <div className={c.details} style={styleBg(p.data.result)}>
         <div className={c.cat}>
-          <span className={c.til}>cat</span>
+          <span className={c.til}>cat:</span>
           <span className={c.dataDet}>{p.data.category}</span>
         </div>
         <div className={c.sequ}>
-          <span className={c.til}>Seq</span>
+          <span className={c.til}>Seq:</span>
           <span className={c.dataDet}>{p.data.sequence} </span>
         </div>
         <div className={c.task}>
-          <span className={c.til}>task</span>
+          <span className={c.til}>task:</span>
           <span className={c.dataDet}>{p.data.task}</span>
         </div>
       </div>
