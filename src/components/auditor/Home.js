@@ -8,6 +8,7 @@ const Home = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [control, setControl] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [shiftf, setShiftf] = useState("");
   const d = new Date().getHours();
   const data = control ? tasks.filter((f) => f.crew === control) : [];
   console.log(getCurrentWeek(), d < 14, tasks, data);
@@ -25,6 +26,7 @@ const Home = (p) => {
       }
       const data = await response.json();
       console.log(data);
+      setShiftf(data[0].shift);
       setTasks(data[0].plans);
     } catch (e) {
       console.error(e);
@@ -33,7 +35,16 @@ const Home = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
-  
+  const setResult = (cr, t, res) => {
+    const body = {
+      crew: cr,
+      task: t,
+      result: res,
+      shift: shiftf,
+    };
+    console.log(body);
+    callback();
+  };
   return (
     <div className={c.container}>
       <ul className={c.underList}>
@@ -54,7 +65,12 @@ const Home = (p) => {
       </ul>
       {data.length > 0 &&
         data[0].tasks.map((m) => (
-          <Task crew={data[0].crew} data={m} key={m._id} />
+          <Task
+            crew={data[0].crew}
+            data={m}
+            key={m._id}
+            setResult={setResult}
+          />
         ))}
     </div>
   );

@@ -18,8 +18,12 @@ const styleBg = (s) => {
   }
 };
 
+
 const Task = (p) => {
-  console.log(p.data);
+    console.log(p.data);
+    const onClickHandler=(e, t)=>{
+        p.setResult(p.crew, p.data._id, t, )
+    }
   return (
     <div className={c.taskContariner}>
       <div className={c.details} style={styleBg(p.data.result)}>
@@ -47,6 +51,7 @@ const Task = (p) => {
                 }
               : {}
           }
+          onClick={e=>onClickHandler(e, 'OK')}
         >
           ok
         </div>
@@ -59,6 +64,7 @@ const Task = (p) => {
                 }
               : {}
           }
+          onClick={e=>onClickHandler(e, 'NA')}
         >
           na
         </div>
@@ -72,6 +78,7 @@ const Task = (p) => {
                 }
               : {}
           }
+          onClick={e=>onClickHandler(e, 'NOK')}
         >
           nok
         </div>
