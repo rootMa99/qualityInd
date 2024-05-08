@@ -4,6 +4,7 @@ import api from "../../service/api";
 import { useSelector } from "react-redux";
 import { getCurrentWeek } from "../hooks/hfunc";
 import Task from "./Task";
+import erimg from "../../assets/404er.svg";
 const Home = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [control, setControl] = useState(false);
@@ -47,6 +48,12 @@ const Home = (p) => {
   };
   return (
     <div className={c.container}>
+      {tasks.length === 0 && (
+        <div className={c.notf}>
+          <img src={erimg} alt="not found" />
+          <h3>no task found for you!</h3>
+        </div>
+      )}
       <ul className={c.underList}>
         {tasks.length > 0 &&
           tasks.map((m) => (
