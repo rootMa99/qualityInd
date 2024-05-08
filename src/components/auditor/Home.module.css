@@ -15,7 +15,7 @@
   width: 100%;
   flex-wrap: wrap;
   padding: 0;
-  margin-top: 2rem;
+  margin: auto 0;
 }
 .underList li {
   font-size: medium;

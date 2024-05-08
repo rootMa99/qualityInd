@@ -55,9 +55,12 @@ const Home = (p) => {
           <h3>no task found for you!</h3>
         </div>
       )}
-      {tasks.length > 0 && <ul className={c.underList}>
-        
-         { tasks.map((m) => (
+      {tasks.length > 0 && (
+        <ul
+          className={c.underList}
+          style={data.length > 0 ? { margin: "1.5rem 0" } : {}}
+        >
+          {tasks.map((m) => (
             <li
               key={m.crew}
               style={
@@ -70,7 +73,8 @@ const Home = (p) => {
               {m.crew}
             </li>
           ))}
-      </ul>}
+        </ul>
+      )}
       {data.length > 0 &&
         data[0].tasks.map((m) => (
           <Task
