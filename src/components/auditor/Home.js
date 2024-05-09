@@ -60,7 +60,7 @@ const Home = (p) => {
       }
       const data = await response.json();
       console.log(data);
-    //   callback();
+      callback();
     } catch (e) {
       console.error(e);
     }
