@@ -14,7 +14,7 @@ const Home = (p) => {
   const [shiftf, setShiftf] = useState("");
   const d = new Date().getHours();
   const data = control ? tasks.filter((f) => f.crew === control) : [];
-  console.log(getCurrentWeek(), d < 14, tasks, data);
+  console.log(getCurrentWeek(), d < 14, tasks, data, shiftf);
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/planning?week=${getCurrentWeek()}`, {
@@ -39,6 +39,12 @@ const Home = (p) => {
     callback();
   }, [callback]);
   const setResult = async (cr, t, res) => {
+  if(shiftf==="morning" && d>14 ){
+    return;
+  }
+  if(shiftf==="evening" && d>22 ){
+    return;
+  }
     const body = {
       crew: cr,
       taskId: t,
