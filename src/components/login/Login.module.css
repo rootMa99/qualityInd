@@ -1,4 +1,3 @@
-
 .cont {
   display: flex;
   align-items: center;
@@ -32,7 +31,6 @@
     transform: translateY(0);
   }
 }
-
 
 .Form-container {
   display: flex;
@@ -69,7 +67,6 @@
   transition: all 0.2s ease-in-out;
   border: 2px solid #f84018;
   background-color: #00000077;
- 
 }
 .username:focus,
 .userpassword:focus {
@@ -102,4 +99,20 @@
 .Login:hover {
   background: #000000;
   border: 2px solid #000;
+}
+
+@media (width <= 750px) {
+  .cont{
+    margin-top: 1vh;
+  }
+  .titlte {
+    font-size: 18px;
+  }
+  .Form-container {
+    width: 20rem;
+  }
+  .username,
+  .userpassword {
+    width: 15rem;
+  }
 }
