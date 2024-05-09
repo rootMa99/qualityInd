@@ -39,10 +39,13 @@ const Home = (p) => {
     callback();
   }, [callback]);
   const setResult = async (cr, t, res) => {
-  if(shiftf==="morning" && d>14 ){
+  if(shiftf==="morning" && d>14 && d>=6){
     return;
   }
-  if(shiftf==="evening" && d>22 ){
+  if(shiftf==="evening" && d>22 && d>=14){
+    return;
+  }
+  if(shiftf==="nigth" && d>6 && d!==22 && d!==23 ){
     return;
   }
     const body = {
