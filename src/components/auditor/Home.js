@@ -6,6 +6,7 @@ import { getCurrentWeek } from "../hooks/hfunc";
 import Task from "./Task";
 import erimg from "../../assets/404er.svg";
 
+
 const Home = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [control, setControl] = useState(false);
@@ -37,15 +38,32 @@ const Home = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
-  const setResult = (cr, t, res) => {
+  const setResult = async (cr, t, res) => {
     const body = {
       crew: cr,
-      task: t,
+      taskId: t,
       result: res,
       shift: shiftf,
     };
     console.log(body);
-    // callback();
+    try {
+      const response = await fetch(`${api}/result`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+      callback();
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <div className={c.container}>
