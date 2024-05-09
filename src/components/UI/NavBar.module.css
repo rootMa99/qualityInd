@@ -136,3 +136,19 @@
 .Btn:active {
   transform: translate(2px ,2px);
 }
+
+@media (width < 600px) {
+  .logo {
+    margin-left: 10px;
+  }
+  .logo img {
+    width: 5rem;
+  }
+  
+}
+@media (width < 450px) {
+  .welcome{
+    font-size: 8px !important;
+  }
+  
+}
