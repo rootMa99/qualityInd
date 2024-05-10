@@ -15,9 +15,9 @@ const Home = (p) => {
   const d = new Date().getHours();
   const data = control ? tasks.filter((f) => f.crew === control) : [];
   console.log(getCurrentWeek(), d < 14, tasks, data, shiftf);
-  if(!isLoged.config){
-    alert("config")
-  }
+  // if(!isLoged.config){
+  //   alert("config")
+  // }
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/planning?week=${getCurrentWeek()}`, {
