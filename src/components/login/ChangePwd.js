@@ -19,10 +19,18 @@ const ChangePwd = () => {
   const ClickHandler = async (e) => {
     e.preventDefault();
 
-    if (loginCred.password.trim() === "" || loginCred.newPassword.trim() === "") {
+    if (
+      loginCred.password.trim() === "" ||
+      loginCred.newPassword.trim() === ""
+    ) {
       alert("please make sure all field not empty");
       return;
     }
+    const body = {
+      password: loginCred.password,
+      newPassword: loginCred.newPassword,
+    };
+    console.log(body, isLoged.token);
     try {
       const response = await fetch(`${api}/auth/change-password`, {
         method: "POST",
@@ -30,16 +38,14 @@ const ChangePwd = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${isLoged.token}`,
         },
-        body: JSON.stringify(loginCred),
+        body: JSON.stringify(body),
       });
       if (!response.ok) {
         throw new Error(response.status);
       }
       const data = await response.json();
       console.log(data);
-      dispatch(
-        loginActions.changepwd()
-      );
+      dispatch(loginActions.changepwd());
     } catch (e) {
       setErr(true);
       console.error(e);
@@ -56,14 +62,14 @@ const ChangePwd = () => {
 
   const pwdChangeHadlerr = (e) => {
     setLogingCred((p) => {
-        const updatedPwd = { ...p, reNewPassword: e.target.value };
-        if (loginCred.newPassword !== e.target.value) {
-          setMatchP(false);
-        } else {
-          setMatchP(true);
-        }
-        return updatedPwd;
-      });
+      const updatedPwd = { ...p, reNewPassword: e.target.value };
+      if (loginCred.newPassword !== e.target.value) {
+        setMatchP(false);
+      } else {
+        setMatchP(true);
+      }
+      return updatedPwd;
+    });
   };
 
   if (err) {
@@ -101,11 +107,11 @@ const ChangePwd = () => {
           />
         </div>
         {!matchP && (
-            <p className={c.noteS}>
-              Note: In order to proceed, you will need to match the password and
-              the re-password.
-            </p>
-          )}
+          <p className={c.noteS}>
+            Note: In order to proceed, you will need to match the password and
+            the re-password.
+          </p>
+        )}
         <div className={c["password-container"]}>
           <input
             type="password"
@@ -119,7 +125,9 @@ const ChangePwd = () => {
 
         <button className={c["Login"]}>Submit</button>
       </form>
-      {err && <NetworkNotify message="we encountred some Error please try again!" />}
+      {err && (
+        <NetworkNotify message="we encountred some Error please try again!" />
+      )}
     </React.Fragment>
   );
 };
