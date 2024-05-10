@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const loginS = createSlice({
   name: "logins",
   initialState: {
@@ -9,8 +8,8 @@ const loginS = createSlice({
       role: "",
       userName: "",
       token: "",
-      config:false
-    }
+      config: false,
+    },
   },
   reducers: {
     logIn(s, p) {
@@ -26,12 +25,12 @@ const loginS = createSlice({
         role: "",
         userName: "",
         token: "",
-        config:false
+        config: false,
       };
     },
-    changepwd(s,p){
+    changepwd(s, p) {
       s.isLoged.config = true;
-    }
+    },
   },
 });
 

@@ -19,7 +19,10 @@ const NavBar = (p) => {
       {isLoged.login && (
         <div className={c.links}>
           <ul>
-            <li style={{ color: "#f84018", fontWeight: "600" }} className={c.welcome}>
+            <li
+              style={{ color: "#f84018", fontWeight: "600" }}
+              className={c.welcome}
+            >
               Wellcome
               {" " + isLoged.userName}
             </li>
@@ -31,7 +34,7 @@ const NavBar = (p) => {
                 home
               </NavLink>
             </li>
-            {(isLoged.role ==="Supervisor" || isLoged.role === "monitor") && (
+            {(isLoged.role === "Supervisor" || isLoged.role === "monitor") && (
               <li>
                 <NavLink
                   to="/dashboard"

@@ -25,17 +25,14 @@ const Home = (p) => {
       }
       const data = await response.json();
       console.log(data);
-      setAudit(data.users)
+      setAudit(data.users);
     } catch (e) {
       console.error(e);
     }
-
   }, [isLoged.token]);
   useEffect(() => {
     callback();
   }, [callback]);
-
-
 
   const deletAudit = (e, m) => {
     setAudit(auditData.filter((f) => f.username !== m));
@@ -52,7 +49,7 @@ const Home = (p) => {
   return (
     <div className={c.container}>
       {planify && <BackDrop click={close} />}
-      {planify && <PlaningForm data={planify} click={close}/>}
+      {planify && <PlaningForm data={planify} click={close} />}
       <h1 className={c.title}>Auditors list</h1>
       <table className={c.table}>
         <thead>
