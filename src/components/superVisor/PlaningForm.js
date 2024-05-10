@@ -338,7 +338,7 @@ const PlaningForm = (p) => {
                   options={[
                     { label: "morning", value: "morning" },
                     { label: "evening", value: "evening" },
-                    { label: "nigth", value: "nigth" },
+                    { label: "night", value: "night" },
                   ]}
                   id="shift"
                   inputId="shift"

@@ -45,7 +45,7 @@ const Home = (p) => {
   if(shiftf==="evening" && d>=22 && d<14){
     return;
   }
-  if(shiftf==="nigth" && d>=6 && d!==22 && d!==23 ){
+  if(shiftf==="night" && d>=6 && d!==22 && d!==23 ){
     return;
   }
     const body = {
