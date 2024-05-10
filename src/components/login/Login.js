@@ -38,6 +38,7 @@ const Login = () => {
           role: data.user.role,
           userName: data.user.fullname,
           token: data.token,
+          config: data.user.isConfigured,
         })
       );
     } catch (e) {

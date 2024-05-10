@@ -9,6 +9,7 @@ const loginS = createSlice({
       role: "",
       userName: "",
       token: "",
+      config:false
     }
   },
   reducers: {
@@ -17,6 +18,7 @@ const loginS = createSlice({
       s.isLoged.role = p.payload.role;
       s.isLoged.userName = p.payload.userName;
       s.isLoged.token = p.payload.token;
+      s.isLoged.config = p.payload.config;
     },
     logout(s, p) {
       s.isLoged = {
@@ -24,6 +26,7 @@ const loginS = createSlice({
         role: "",
         userName: "",
         token: "",
+        config:false
       };
     },
   },
