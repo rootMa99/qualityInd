@@ -18,25 +18,57 @@ const styleBg = (s) => {
   }
 };
 
-
 const Task = (p) => {
-    console.log(p.data);
-    const onClickHandler=(e, t)=>{
-        p.setResult(p.crew, p.data._id, t, )
-    }
+  console.log(p.data);
+  const onClickHandler = (e, t) => {
+    p.setResult(p.crew, p.data._id, t);
+  };
   return (
     <div className={c.taskContariner}>
       <div className={c.details} style={styleBg(p.data.result)}>
         <div className={c.cat}>
-          <span className={c.til}>cat:</span>
+          <span
+            className={c.til}
+            style={
+              p.data.result === "NOK"
+                ? {
+                    color: "#FFA211",
+                  }
+                : {}
+            }
+          >
+            cat:
+          </span>
           <span className={c.dataDet}>{p.data.category}</span>
         </div>
         <div className={c.sequ}>
-          <span className={c.til}>Seq:</span>
+          <span
+            className={c.til}
+            style={
+              p.data.result === "NOK"
+                ? {
+                    color: "#FFA211",
+                  }
+                : {}
+            }
+          >
+            Seq:
+          </span>
           <span className={c.dataDet}>{p.data.sequence} </span>
         </div>
         <div className={c.task}>
-          <span className={c.til}>task:</span>
+          <span
+            className={c.til}
+            style={
+              p.data.result === "NOK"
+                ? {
+                    color: "#FFA211",
+                  }
+                : {}
+            }
+          >
+            task:
+          </span>
           <span className={c.dataDet}>{p.data.task}</span>
         </div>
       </div>
@@ -47,11 +79,11 @@ const Task = (p) => {
             p.data.result === "OK"
               ? {
                   backgroundColor: "#006B63",
-                  color:'white'
+                  color: "white",
                 }
               : {}
           }
-          onClick={e=>onClickHandler(e, 'OK')}
+          onClick={(e) => onClickHandler(e, "OK")}
         >
           ok
         </div>
@@ -64,7 +96,7 @@ const Task = (p) => {
                 }
               : {}
           }
-          onClick={e=>onClickHandler(e, 'NA')}
+          onClick={(e) => onClickHandler(e, "NA")}
         >
           na
         </div>
@@ -74,11 +106,11 @@ const Task = (p) => {
             p.data.result === "NOK"
               ? {
                   backgroundColor: "#CF3335",
-                  color:'white'
+                  color: "white",
                 }
               : {}
           }
-          onClick={e=>onClickHandler(e, 'NOK')}
+          onClick={(e) => onClickHandler(e, "NOK")}
         >
           nok
         </div>
