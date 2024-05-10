@@ -29,6 +29,9 @@ const loginS = createSlice({
         config:false
       };
     },
+    changepwd(s,p){
+      s.isLoged.config = true;
+    }
   },
 });
 

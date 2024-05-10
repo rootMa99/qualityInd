@@ -22,7 +22,7 @@ const ChangePwd = () => {
       return;
     }
     try {
-      const response = await fetch(`${api}/auth/login/`, {
+      const response = await fetch(`${api}/auth/change-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
