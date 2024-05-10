@@ -7,8 +7,9 @@ import NetworkNotify from "../UI/NetworkNotify";
 
 const ChangePwd = () => {
   const [loginCred, setLogingCred] = useState({
-    username: "",
     password: "",
+    newPassword: "",
+    reNewPassword: "",
   });
   const [err, setErr] = useState(false);
   const dispatch = useDispatch();
@@ -48,11 +49,15 @@ const ChangePwd = () => {
   };
 
   const nameChangeHadler = (e) => {
-    setLogingCred((p) => ({ ...p, username: e.target.value }));
+    setLogingCred((p) => ({ ...p, password: e.target.value }));
   };
 
   const pwdChangeHadler = (e) => {
-    setLogingCred((p) => ({ ...p, password: e.target.value }));
+    setLogingCred((p) => ({ ...p, newPassword: e.target.value }));
+  };
+
+  const pwdChangeHadlerr = (e) => {
+    setLogingCred((p) => ({ ...p, reNewPassword: e.target.value }));
   };
 
   if (err) {
@@ -96,7 +101,7 @@ const ChangePwd = () => {
             placeholder="Re-Enter New Password"
             className={c["userpassword"]}
             value={loginCred.pwd}
-            onChange={pwdChangeHadler}
+            onChange={pwdChangeHadlerr}
           />
         </div>
 
