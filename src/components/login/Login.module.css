@@ -116,3 +116,11 @@
     width: 15rem;
   }
 }
+
+
+.noteS{
+  color: #f1c07e;
+  text-transform: capitalize;
+  margin: 0;
+  margin-bottom: 1rem;
+}

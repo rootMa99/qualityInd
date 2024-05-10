@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import c from "./Login.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../../service/api";
 import { loginActions } from "../../store/loginSlice";
 import NetworkNotify from "../UI/NetworkNotify";
@@ -12,12 +12,14 @@ const ChangePwd = () => {
     reNewPassword: "",
   });
   const [err, setErr] = useState(false);
+  const [matchP, setMatchP] = useState(true);
+  const { isLoged } = useSelector((s) => s.login);
   const dispatch = useDispatch();
 
   const ClickHandler = async (e) => {
     e.preventDefault();
 
-    if (loginCred.username.trim() === "" || loginCred.password.trim() === "") {
+    if (loginCred.password.trim() === "" || loginCred.newPassword.trim() === "") {
       alert("please make sure all field not empty");
       return;
     }
@@ -26,6 +28,7 @@ const ChangePwd = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
         },
         body: JSON.stringify(loginCred),
       });
@@ -35,12 +38,7 @@ const ChangePwd = () => {
       const data = await response.json();
       console.log(data);
       dispatch(
-        loginActions.logIn({
-          role: data.user.role,
-          userName: data.user.fullname,
-          token: data.token,
-          config: data.user.isConfigured,
-        })
+        loginActions.changepwd()
       );
     } catch (e) {
       setErr(true);
@@ -57,7 +55,15 @@ const ChangePwd = () => {
   };
 
   const pwdChangeHadlerr = (e) => {
-    setLogingCred((p) => ({ ...p, reNewPassword: e.target.value }));
+    setLogingCred((p) => {
+        const updatedPwd = { ...p, reNewPassword: e.target.value };
+        if (loginCred.newPassword !== e.target.value) {
+          setMatchP(false);
+        } else {
+          setMatchP(true);
+        }
+        return updatedPwd;
+      });
   };
 
   if (err) {
@@ -94,6 +100,12 @@ const ChangePwd = () => {
             onChange={pwdChangeHadler}
           />
         </div>
+        {!matchP && (
+            <p className={c.noteS}>
+              Note: In order to proceed, you will need to match the password and
+              the re-password.
+            </p>
+          )}
         <div className={c["password-container"]}>
           <input
             type="password"
