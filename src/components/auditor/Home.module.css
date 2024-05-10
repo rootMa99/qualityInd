@@ -108,13 +108,13 @@
   text-transform: uppercase;
   margin: 0;
 }
-@media (width >= 750px) {
+/* @media (width >= 750px) {
   .notf img {
     width: 70%;
   }
-}
-@media (width > 1100px) {
+} */
+/* @media (width > 1100px) {
   .notf img {
-    width: 40%;
+    width: 70%;
   }
-}
+} */
