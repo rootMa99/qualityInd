@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getCurrentWeek } from "../hooks/hfunc";
 import Task from "./Task";
 import erimg from "../../assets/404er.svg";
-
+import ChangePwd from "../login/ChangePwd";
 
 const Home = (p) => {
   const { isLoged } = useSelector((s) => s.login);
@@ -42,15 +42,15 @@ const Home = (p) => {
     callback();
   }, [callback]);
   const setResult = async (cr, t, res) => {
-  if(shiftf==="morning" && d>=14 && d<6){
-    return;
-  }
-  if(shiftf==="evening" && d>=22 && d<14){
-    return;
-  }
-  if(shiftf==="night" && d>=6 && d!==22 && d!==23 ){
-    return;
-  }
+    if (shiftf === "morning" && d >= 14 && d < 6) {
+      return;
+    }
+    if (shiftf === "evening" && d >= 22 && d < 14) {
+      return;
+    }
+    if (shiftf === "night" && d >= 6 && d !== 22 && d !== 23) {
+      return;
+    }
     const body = {
       crew: cr,
       taskId: t,
@@ -77,7 +77,9 @@ const Home = (p) => {
       console.error(e);
     }
   };
-  return (
+  return !isLoged.config ? (
+    <ChangePwd />
+  ) : (
     <div className={c.container}>
       {tasks.length === 0 && (
         <div className={c.notf}>
