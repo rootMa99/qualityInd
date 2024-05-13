@@ -22,6 +22,7 @@ const AddAuditor = (p) => {
       }
       const data = await response.json();
       console.log(data);
+      setAuditors(data);
     } catch (e) {
       console.error(e);
     }
@@ -32,15 +33,17 @@ const AddAuditor = (p) => {
 
   return (
     <div className={c.container}>
-      <div>
-        <div>
-          <span>matricule:</span>
-          <span>865</span>
+      <span>X</span>
+      <div className={c.audit}>
+        <div className={c.block}>
+          <span className={c.desc}>matricule:</span>
+          <span className={c.val}>865</span>
         </div>
-        <div>
-          <span>fullname:</span>
-          <span>OUBA SAID</span>
+        <div className={c.block}>
+          <span className={c.desc}>fullname:</span>
+          <span className={c.val}>OUBA SAID</span>
         </div>
+        <h3 className={c.add}>add</h3>
       </div>
     </div>
   );
