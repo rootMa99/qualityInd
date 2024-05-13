@@ -10,7 +10,7 @@ const Home = (p) => {
   const [auditData, setAudit] = useState([]);
   const [planify, setPlanify] = useState(false);
   const { isLoged } = useSelector((s) => s.login);
-
+  const [addAud, setAud]=useState(false);
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/user`, {
@@ -68,7 +68,8 @@ const Home = (p) => {
       {planify && <BackDrop click={close} />}
       {planify && <PlaningForm data={planify} click={close} />}
       <h1 className={c.title}>Auditors list</h1>
-      <h3 className={c.addUser}>add auditor</h3>
+      {!addAud && <h3 className={c.addUser} onClick={e=>setAud(true)}>add auditor</h3>}
+    
       <table className={c.table}>
         <thead>
           <tr>
