@@ -2,7 +2,7 @@
   min-height: 10rem;
   max-height: 25rem;
   overflow: auto;
-  width: 50%;
+  width: 40%;
   border: 2px solid grey;
   padding: 10px;
   border-radius: 16px;
@@ -36,6 +36,7 @@
 .block {
   display: flex;
   gap: 10px;
+  width: 40%;
 }
 .desc {
   color: #f84018;
@@ -45,7 +46,7 @@
 .val {
   color: aliceblue;
 }
-.add {
+.add,.close {
   color: aliceblue;
   text-transform: uppercase;
   opacity: 0.5;
@@ -53,7 +54,15 @@
   border-bottom: 2px solid transparent;
   width: fit-content;
 }
-.add:hover {
+.add:hover , .close:hover{
   opacity: 1;
   border-bottom: 2px solid aliceblue;
+}
+.close:hover{
+  border-bottom: 2px solid red;
+
+}
+.close{
+    color: red;
+    font-weight: bolder;
 }

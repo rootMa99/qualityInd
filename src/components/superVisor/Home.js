@@ -64,6 +64,11 @@ const Home = (p) => {
     setPlanify(false);
   };
 
+  const AddAuditorToSv = async (m) => {
+    console.log(m);
+    setAudit(p=>[...p, m]);
+  };
+
   return (
     <div className={c.container}>
       {planify && <BackDrop click={close} />}
@@ -74,7 +79,7 @@ const Home = (p) => {
           add auditor
         </h3>
       )}
-      {addAud && <AddAuditor />}
+      {addAud && <AddAuditor click={AddAuditorToSv} />}
       <table className={c.table}>
         <thead>
           <tr>
