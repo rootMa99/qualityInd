@@ -68,7 +68,7 @@ const Home = (p) => {
       {planify && <BackDrop click={close} />}
       {planify && <PlaningForm data={planify} click={close} />}
       <h1 className={c.title}>Auditors list</h1>
-      <h3 className={c.addUser}>add user</h3>
+      <h3 className={c.addUser}>add auditor</h3>
       <table className={c.table}>
         <thead>
           <tr>
