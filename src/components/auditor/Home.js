@@ -40,15 +40,16 @@ const Home = (p) => {
     callback();
   }, [callback]);
   const setResult = async (cr, t, res) => {
-    if (shiftf === "morning" && d >= 14 && d < 6) {
-      return;
-    }
-    if (shiftf === "evening" && d >= 22 && d < 14) {
-      return;
-    }
-    if (shiftf === "night" && d >= 6 && d !== 22 && d !== 23) {
-      return;
-    }
+    // console.log(shiftf, shiftf === "morning" && (d >= 14 || d < 6), d >= 14, d < 6)
+    // if (shiftf === "morning" && (d >= 14 || d < 6)) {
+    //   return;
+    // }
+    // if (shiftf === "evening" && d >= 22 && d < 14) {
+    //   return;
+    // }
+    // if (shiftf === "night" && d >= 6 && d !== 22 && d !== 23) {
+    //   return;
+    // }
     const body = {
       crew: cr,
       taskId: t,
