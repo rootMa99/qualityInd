@@ -15,9 +15,7 @@ const Home = (p) => {
   const d = new Date().getHours();
   const data = control ? tasks.filter((f) => f.crew === control) : [];
   console.log(getCurrentWeek(), d < 14, tasks, data, shiftf);
-  // if(!isLoged.config){
-  //   alert("config")
-  // }
+
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/planning?week=${getCurrentWeek()}`, {
@@ -84,7 +82,7 @@ const Home = (p) => {
       {tasks.length === 0 && (
         <div className={c.notf}>
           <img src={erimg} alt="not found" />
-          <h3>no task found for you!</h3>
+          <h3>There was no task found for you!</h3>
         </div>
       )}
       {tasks.length > 0 && (

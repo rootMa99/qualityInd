@@ -127,8 +127,8 @@ const Home = (p) => {
       ) : (
         <div className={c.notf}>
           <img src={notfound} alt="not found" />
-          <h3>no auditor found for you!</h3>
-          <p>note: Click Add Auditor below to add an auditor.</p>
+          <h3>There was no auditor found for you!</h3>
+          <p>Note: To add an auditor, click on the Add Auditor button below.</p>
         </div>
       )}
     </div>

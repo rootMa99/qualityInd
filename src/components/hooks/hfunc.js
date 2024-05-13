@@ -18,9 +18,9 @@ export const getCurrentWeek = () => {
     const diff = now - startOfYear;
     const oneWeek = 1000 * 60 * 60 * 24 * 7;
     const weekNumber = Math.floor(diff / oneWeek)+1;
-    const dayOfWeek = now.getDay() || 7;
-    const correctedWeekNumber = dayOfWeek === 1 ? weekNumber + 1 : weekNumber ;
-  
+    // const dayOfWeek = now.getDay() || 7;
+    // const correctedWeekNumber = dayOfWeek === 1 ? weekNumber + 1 : weekNumber ;
+    const correctedWeekNumber = weekNumber;
     return (
       now.getFullYear() + "-W" + String(correctedWeekNumber).padStart(2, "0")
     );

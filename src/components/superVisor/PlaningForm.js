@@ -183,13 +183,12 @@ const PlaningForm = (p) => {
     if (!crew) {
       return;
     }
-    const confirmation = window.confirm("do you want to add crews?");
+    const confirmation = window.confirm("Do you want to add a new crew?");
     if (confirmation) {
       if (crewTask.length > 0) {
         const i = crewTask.findIndex((f) => f.crew === crew);
         console.log(i);
         if (i > -1) {
-          console.log("found");
           setCrewTask((p) => [
             ...p.filter((f) => f.crew !== crew),
             {
@@ -198,7 +197,6 @@ const PlaningForm = (p) => {
             },
           ]);
         } else {
-          console.log("not found");
           setCrewTask((p) => [
             ...p,
             {
@@ -316,7 +314,7 @@ const PlaningForm = (p) => {
   return (
     <React.Fragment>
       {err && (
-        <NetworkNotify message="we encountred an error please try again!" />
+        <NetworkNotify message="We have encountered an error, please try it again!" />
       )}
       <div className={c.container}>
         <h3>{p.data.fullname}</h3>

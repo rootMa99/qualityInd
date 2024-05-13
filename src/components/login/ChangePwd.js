@@ -126,7 +126,7 @@ const ChangePwd = () => {
         <button className={c["Login"]}>Submit</button>
       </form>
       {err && (
-        <NetworkNotify message="we encountred some Error please try again!" />
+        <NetworkNotify message="We have encountered an error, please try it again!" />
       )}
     </React.Fragment>
   );

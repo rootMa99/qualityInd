@@ -90,7 +90,7 @@ const AddAuditor = (p) => {
             </div>
           ))
         ) : (
-          <span className={c.notFound}>no Auditor found</span>
+          <span className={c.notFound}>THERE IS NO AUDITOR FOUND</span>
         )}
       </div>
     </React.Fragment>
