@@ -55,9 +55,16 @@ const onClickHandler=async (e, m)=>{
 }
 
 
+    const searchbm=e=>{
+        console.log(auditors.filter(f=>f.username.includes(e.target.value)))
+    }
+
   return (
     <React.Fragment>
-    <span className={c.close}>close</span>
+    <div className={c.ccon}>
+    <input type="text" placeholder="search by matricule" onChange={searchbm}/>
+    <span className={c.close} onClick={e=>p.close()}>close</span>
+    </div>
     <div className={c.container}>
       {auditors.map((m) => (
         <div className={c.audit} key={m._id}>

@@ -63,6 +63,9 @@ const Home = (p) => {
   const close = () => {
     setPlanify(false);
   };
+  const closeAdd=()=>{
+    setAud(false);
+  }
 
   const AddAuditorToSv = async (m) => {
     console.log(m);
@@ -79,7 +82,7 @@ const Home = (p) => {
           add auditor
         </h3>
       )}
-      {addAud && <AddAuditor click={AddAuditorToSv} />}
+      {addAud && <AddAuditor close={closeAdd} click={AddAuditorToSv} />}
       <table className={c.table}>
         <thead>
           <tr>

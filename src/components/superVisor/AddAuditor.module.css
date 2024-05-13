@@ -65,4 +65,11 @@
 .close{
     color: red;
     font-weight: bolder;
+    margin-bottom: 0;
+}
+.ccon{
+    display: flex;
+    width: 40%;
+    margin: auto;
+    justify-content: space-between;
 }
