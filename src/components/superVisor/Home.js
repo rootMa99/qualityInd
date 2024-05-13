@@ -6,12 +6,15 @@ import PlaningForm from "./PlaningForm";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
 import AddAuditor from "./AddAuditor";
+import ChangePwd from "../login/ChangePwd";
+import notfound from "../../assets/404er.svg";
 
 const Home = (p) => {
   const [auditData, setAudit] = useState([]);
   const [planify, setPlanify] = useState(false);
   const { isLoged } = useSelector((s) => s.login);
   const [addAud, setAud] = useState(false);
+  console.log(isLoged);
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/user`, {
@@ -37,7 +40,9 @@ const Home = (p) => {
 
   const deletAudit = async (e, m) => {
     console.log(m);
-    const confirmation = window.confirm(`do you want to delete ${m.fullname}, with matricule: ${m.username}?`);
+    const confirmation = window.confirm(
+      `do you want to delete ${m.fullname}, with the matricule: ${m.username}?`
+    );
     if (confirmation) {
       try {
         const response = await fetch(`${api}/user/belong-to/delete/${m._id}`, {
@@ -66,16 +71,18 @@ const Home = (p) => {
   const close = () => {
     setPlanify(false);
   };
-  const closeAdd=()=>{
+  const closeAdd = () => {
     setAud(false);
-  }
+  };
 
   const AddAuditorToSv = async (m) => {
     console.log(m);
-    setAudit(p=>[...p, m]);
+    setAudit((p) => [...p, m]);
   };
 
-  return (
+  return !isLoged.config ? (
+    <ChangePwd />
+  ) : (
     <div className={c.container}>
       {planify && <BackDrop click={close} />}
       {planify && <PlaningForm data={planify} click={close} />}
@@ -86,36 +93,44 @@ const Home = (p) => {
         </h3>
       )}
       {addAud && <AddAuditor close={closeAdd} click={AddAuditorToSv} />}
-      <table className={c.table}>
-        <thead>
-          <tr>
-            <th>matricule</th>
-            <th>fullName</th>
-            <th colSpan={2}></th>
-          </tr>
-        </thead>
-        <tbody>
-          {auditData.map((m, i) => (
-            <tr key={i}>
-              <td>{m.username}</td>
-              <td>{m.fullname}</td>
-              <td className={c.plaify} onClick={(e) => planifyAudit(e, m)}>
-                planify
-              </td>
-              <td className={c.delete} onClick={(e) => deletAudit(e, m)}>
-                delete
-              </td>
+      {auditData.length > 0 ? (
+        <table className={c.table}>
+          <thead>
+            <tr>
+              <th>matricule</th>
+              <th>fullName</th>
+              <th colSpan={2}></th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td></td>
-            <td></td>
-            <td colSpan={2}></td>
-          </tr>
-        </tfoot>
-      </table>
+          </thead>
+          <tbody>
+            {auditData.map((m, i) => (
+              <tr key={i}>
+                <td>{m.username}</td>
+                <td>{m.fullname}</td>
+                <td className={c.plaify} onClick={(e) => planifyAudit(e, m)}>
+                  planify
+                </td>
+                <td className={c.delete} onClick={(e) => deletAudit(e, m)}>
+                  delete
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td colSpan={2}></td>
+            </tr>
+          </tfoot>
+        </table>
+      ) : (
+        <div className={c.notf}>
+          <img src={notfound} alt="not found" />
+          <h3>no auditor found for you!</h3>
+          <p>note: Click Add Auditor below to add an auditor.</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -33,7 +33,7 @@ const Home = (p) => {
       const data = await response.json();
       console.log(data);
       setShiftf(data[0].shift);
-      setTasks(data[0].plans);
+      setTasks(data);
     } catch (e) {
       console.error(e);
     }
