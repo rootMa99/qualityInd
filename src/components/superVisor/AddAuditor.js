@@ -5,6 +5,7 @@ import c from "./AddAuditor.module.css";
 const AddAuditor = (p) => {
   const { isLoged } = useSelector((s) => s.login);
   const [auditors, setAuditors] = useState([]);
+  const [filter, setFilter] = useState([]);
   const callback = useCallback(async () => {
     try {
       const response = await fetch(
@@ -23,6 +24,7 @@ const AddAuditor = (p) => {
       const data = await response.json();
       console.log(data);
       setAuditors(data.users);
+      setFilter(data.users);
     } catch (e) {
       console.error(e);
     }
@@ -30,56 +32,67 @@ const AddAuditor = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
-console.log(auditors)
+  console.log(auditors);
 
-const onClickHandler=async (e, m)=>{
+  const onClickHandler = async (e, m) => {
     try {
-        const response = await fetch(`${api}/user/belong-to/add/${m._id}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${isLoged.token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        const data = await response.json();
-        console.log(data);
-        callback();
-        p.click(m);
-      } catch (e) {
-        console.error(e);
+      const response = await fetch(`${api}/user/belong-to/add/${m._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
       }
-    
-}
-
-
-    const searchbm=e=>{
-        console.log(auditors.filter(f=>f.username.includes(e.target.value)))
+      const data = await response.json();
+      console.log(data);
+      callback();
+      p.click(m);
+    } catch (e) {
+      console.error(e);
     }
+  };
+
+  const searchbm = (e) => {
+    setFilter(auditors.filter((f) => f.username.includes(e.target.value)));
+  };
 
   return (
     <React.Fragment>
-    <div className={c.ccon}>
-    <input type="text" placeholder="search by matricule" onChange={searchbm}/>
-    <span className={c.close} onClick={e=>p.close()}>close</span>
-    </div>
-    <div className={c.container}>
-      {auditors.map((m) => (
-        <div className={c.audit} key={m._id}>
-          <div className={c.block}>
-            <span className={c.desc}>matricule:</span>
-            <span className={c.val}>{m.username}</span>
-          </div>
-          <div className={c.block}>
-            <span className={c.desc}>fullname:</span>
-            <span className={c.val}>{m.fullname}</span>
-          </div>
-          <h3 className={c.add} onClick={e=>onClickHandler(e, m)} >add</h3>
-        </div>
-      ))}
-    </div>
+      <div className={c.ccon}>
+        <input
+          type="text"
+          placeholder="search by matricule"
+          onChange={searchbm}
+          className={c.searchmlle}
+        />
+        <span className={c.close} onClick={(e) => p.close()}>
+          close
+        </span>
+      </div>
+      <div className={c.container}>
+        {filter.length > 0 ? (
+          filter.map((m) => (
+            <div className={c.audit} key={m._id}>
+              <div className={c.block}>
+                <span className={c.desc}>matricule:</span>
+                <span className={c.val}>{m.username}</span>
+              </div>
+              <div className={c.block}>
+                <span className={c.desc}>fullname:</span>
+                <span className={c.val}>{m.fullname}</span>
+              </div>
+              <h3 className={c.add} onClick={(e) => onClickHandler(e, m)}>
+                add
+              </h3>
+            </div>
+          ))
+        ) : (
+          <span className={c.notFound}>no Auditor found</span>
+        )}
+      </div>
     </React.Fragment>
   );
 };

@@ -37,22 +37,25 @@ const Home = (p) => {
 
   const deletAudit = async (e, m) => {
     console.log(m);
-    try {
-      const response = await fetch(`${api}/user/belong-to/delete/${m._id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${isLoged.token}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error(response.status);
+    const confirmation = window.confirm(`do you want to delete ${m.fullname}, with matricule: ${m.username}?`);
+    if (confirmation) {
+      try {
+        const response = await fetch(`${api}/user/belong-to/delete/${m._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${isLoged.token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const data = await response.json();
+        console.log(data);
+        setAudit(auditData.filter((f) => f.username !== m.username));
+      } catch (e) {
+        console.error(e);
       }
-      const data = await response.json();
-      console.log(data);
-      setAudit(auditData.filter((f) => f.username !== m.username));
-    } catch (e) {
-      console.error(e);
     }
   };
 
