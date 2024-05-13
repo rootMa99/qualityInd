@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { AUDITOR } from "../../DemoData";
+// import { AUDITOR } from "../../DemoData";
 import c from "./Home.module.css";
 import BackDrop from "../UI/BackDrop";
 import PlaningForm from "./PlaningForm";
@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import api from "../../service/api";
 
 const Home = (p) => {
-  const [auditData, setAudit] = useState(AUDITOR);
+  const [auditData, setAudit] = useState([]);
   const [planify, setPlanify] = useState(false);
   const { isLoged } = useSelector((s) => s.login);
 
@@ -68,6 +68,7 @@ const Home = (p) => {
       {planify && <BackDrop click={close} />}
       {planify && <PlaningForm data={planify} click={close} />}
       <h1 className={c.title}>Auditors list</h1>
+      <h3 className={c.addUser}>add user</h3>
       <table className={c.table}>
         <thead>
           <tr>
