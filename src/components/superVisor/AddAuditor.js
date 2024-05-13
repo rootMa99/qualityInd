@@ -22,7 +22,7 @@ const AddAuditor = (p) => {
       }
       const data = await response.json();
       console.log(data);
-      setAuditors(data);
+      setAuditors(data.users);
     } catch (e) {
       console.error(e);
     }
@@ -30,21 +30,23 @@ const AddAuditor = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
-
+console.log(auditors)
   return (
     <div className={c.container}>
       <span>X</span>
-      <div className={c.audit}>
-        <div className={c.block}>
-          <span className={c.desc}>matricule:</span>
-          <span className={c.val}>865</span>
+      {auditors.map((m) => (
+        <div className={c.audit}>
+          <div className={c.block}>
+            <span className={c.desc}>matricule:</span>
+            <span className={c.val}>865</span>
+          </div>
+          <div className={c.block}>
+            <span className={c.desc}>fullname:</span>
+            <span className={c.val}>OUBA SAID</span>
+          </div>
+          <h3 className={c.add}>add</h3>
         </div>
-        <div className={c.block}>
-          <span className={c.desc}>fullname:</span>
-          <span className={c.val}>OUBA SAID</span>
-        </div>
-        <h3 className={c.add}>add</h3>
-      </div>
+      ))}
     </div>
   );
 };
