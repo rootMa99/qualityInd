@@ -34,8 +34,25 @@ const Home = (p) => {
     callback();
   }, [callback]);
 
-  const deletAudit = (e, m) => {
-    setAudit(auditData.filter((f) => f.username !== m));
+  const deletAudit = async (e, m) => {
+    console.log(m);
+    try {
+      const response = await fetch(`${api}/user/belong-to/delete/${m._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      console.log(data);
+      setAudit(auditData.filter((f) => f.username !== m.username));
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const planifyAudit = (e, m) => {
@@ -67,10 +84,7 @@ const Home = (p) => {
               <td className={c.plaify} onClick={(e) => planifyAudit(e, m)}>
                 planify
               </td>
-              <td
-                className={c.delete}
-                onClick={(e) => deletAudit(e, m.username)}
-              >
+              <td className={c.delete} onClick={(e) => deletAudit(e, m)}>
                 delete
               </td>
             </tr>
