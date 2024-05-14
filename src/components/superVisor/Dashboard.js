@@ -107,15 +107,13 @@ const Dashboard = (p) => {
         <div className={c.title}>
           <h1>Stacked test</h1>
         </div>
-          <div className={c.chart} style={{ width:"90%" }}>
-            <div className={c.title} style={{ marginBottom: "0.5rem" }}>
-              <div className={c.line}></div>
-              <h4>some data</h4>
-            </div>
-
-            <StackedBarChart />
+        <div className={c.chart} style={{ width: "90%" }}>
+          <div className={c.title} style={{ marginBottom: "0.5rem" }}>
+            <div className={c.line}></div>
+            <h4>some data</h4>
           </div>
-
+          <StackedBarChart />
+        </div>
       </div>
     </div>
   );

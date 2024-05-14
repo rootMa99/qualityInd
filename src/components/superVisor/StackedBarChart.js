@@ -21,20 +21,20 @@ ChartJS.register(
 
 const StackedBarChart = (p) => {
   const data = {
-    labels: ["January", "February", "March"],
+    labels: ["OK", "N/D", "NOK"],
     datasets: [
       {
-        label: "Dataset 1",
+        label: "OK",
         data: [65, 59, 80],
         backgroundColor: ["#006B63"],
       },
       {
-        label: "Dataset 2",
+        label: "N/D",
         data: [28, 48, 40],
         backgroundColor: ["#FFA211"],
       },
       {
-        label: "Dataset 3",
+        label: "NOK",
         data: [35, 41, 37],
         backgroundColor: ["#CF3335"],
       },
