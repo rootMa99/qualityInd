@@ -60,7 +60,7 @@ export const colorBgCond = (d) => {
   const cal = (d.ok / (d.ok + d.nok + d.na)) * 100;
 
   if (cal >= 98) {
-    return "#4E7C88";
+    return "#0a5115";
   }
   if (cal < 98 && cal >= 96) {
     return "#774c03";

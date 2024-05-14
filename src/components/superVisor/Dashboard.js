@@ -42,7 +42,7 @@ const Dashboard = (p) => {
   const d = getChartCrewSV(data);
   const dp = getChartProject(d);
   const df = getChartFamily(d);
-  const da=getChartAud(data)
+  const da = getChartAud(data);
   console.log("cl2:", d);
   console.log("cl projetc", dp);
   console.log("cl family", df);
@@ -110,8 +110,11 @@ const Dashboard = (p) => {
         <div className={c.title}>
           <h1>auditors Statistics</h1>
         </div>
-        <div className={c.chart} style={{ width: "90%", padding:0 }}>
-          <StackedBarChart data={da}/>
+        <div
+          className={c.chart}
+          style={{ width: "90%", padding: 0, height: "25rem" }}
+        >
+          <StackedBarChart data={da} />
         </div>
       </div>
     </div>
