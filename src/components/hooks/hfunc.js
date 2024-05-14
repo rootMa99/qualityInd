@@ -134,3 +134,63 @@ export const getChartProject = (d) => {
   return rd;
 };
 
+export const getChartAud=d=>{
+  const rd=[];
+
+  d.forEach((e) => {
+    e.tasks.forEach((i) => {
+      if (rd.length === 0) {
+        const s = {
+          name: i.username,
+          shift: e.shift,
+          ok: 0,
+          nok: 0,
+          na: 0,
+        };
+        if (i.result === "OK") {
+          s.ok += 1;
+        }
+        if (i.result === "NA") {
+          s.na += 1;
+        }
+        if (i.result === "NOK") {
+          s.nok += 1;
+        }
+        rd.push(s);
+      }else{
+        const ind = rd.findIndex((f) => f.name === i.username);
+        if(ind>-1){
+          if (i.result === "OK") {
+            rd[ind].ok += 1;
+          }
+          if (i.result === "NA") {
+            rd[ind].na += 1;
+          }
+          if (i.result === "NOK") {
+            rd[ind].nok += 1;
+          }
+        }else{
+          const s = {
+            name: i.username,
+            shift: e.shift,
+            ok: 0,
+            nok: 0,
+            na: 0,
+          };
+          if (i.result === "OK") {
+            s.ok += 1;
+          }
+          if (i.result === "NA") {
+            s.na += 1;
+          }
+          if (i.result === "NOK") {
+            s.nok += 1;
+          }
+          rd.push(s);
+        }
+      }
+    });
+  });
+
+  return rd;
+}

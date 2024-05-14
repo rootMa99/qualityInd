@@ -4,6 +4,7 @@ import api from "../../service/api";
 import { useSelector } from "react-redux";
 import {
   colorBgCond,
+  getChartAud,
   getChartCrewSV,
   getChartFamily,
   getChartProject,
@@ -41,9 +42,11 @@ const Dashboard = (p) => {
   const d = getChartCrewSV(data);
   const dp = getChartProject(d);
   const df = getChartFamily(d);
+  const da=getChartAud(data)
   console.log("cl2:", d);
   console.log("cl projetc", dp);
   console.log("cl family", df);
+  console.log("cl family", da);
   return (
     <div className={c.container}>
       <div className={c.title}>
@@ -105,14 +108,10 @@ const Dashboard = (p) => {
       </div>
       <div className={c.crewChartContainer} style={{ marginTop: "0.5rem" }}>
         <div className={c.title}>
-          <h1>Stacked test</h1>
+          <h1>auditors Statistics</h1>
         </div>
         <div className={c.chart} style={{ width: "90%" }}>
-          <div className={c.title} style={{ marginBottom: "0.5rem" }}>
-            <div className={c.line}></div>
-            <h4>some data</h4>
-          </div>
-          <StackedBarChart />
+          <StackedBarChart data={da}/>
         </div>
       </div>
     </div>

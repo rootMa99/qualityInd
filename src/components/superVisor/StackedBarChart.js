@@ -21,21 +21,21 @@ ChartJS.register(
 
 const StackedBarChart = (p) => {
   const data = {
-    labels: ["OK", "N/D", "NOK"],
+    labels: p.data.map((m) => m.name),
     datasets: [
       {
         label: "OK",
-        data: [65, 59, 80],
+        data: p.data.map((m) => m.ok),
         backgroundColor: ["#006B63"],
       },
       {
         label: "N/D",
-        data: [28, 48, 40],
+        data: p.data.map((m) => m.na),
         backgroundColor: ["#FFA211"],
       },
       {
         label: "NOK",
-        data: [35, 41, 37],
+        data: p.data.map((m) => m.nok),
         backgroundColor: ["#CF3335"],
       },
     ],
