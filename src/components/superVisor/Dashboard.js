@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import c from "./Dashboard.module.css";
 import api from "../../service/api";
 import { useSelector } from "react-redux";
-import { colorBgCond, getChartCrewSV } from "../hooks/hfunc";
+import { colorBgCond, getChartCrewSV, getChartFamily, getChartProject } from "../hooks/hfunc";
 import BarChart from "./BarChart";
 
 const Dashboard = (p) => {
@@ -23,7 +23,7 @@ const Dashboard = (p) => {
         throw new Error(response.status);
       }
       const d = await response.json();
-      console.log(d);
+      console.log("cl1:", d);
       setData(d);
     } catch (e) {
       console.error(e);
@@ -33,7 +33,11 @@ const Dashboard = (p) => {
     callback();
   }, [callback]);
   const d = getChartCrewSV(data);
-  console.log(d);
+  const dp = getChartProject(d);
+  const df= getChartFamily(d)
+  console.log("cl2:", d);
+  console.log("cl projetc", dp);
+  console.log("cl family", df);
   return (
     <div className={c.container}>
       <div className={c.title}>
@@ -51,6 +55,37 @@ const Dashboard = (p) => {
         />
       </div>
       <div className={c.crewChartContainer}>
+        <div className={c.title}>
+          <h1>projects</h1>
+        </div>
+        {dp.map((m) => (
+          <div className={c.chart} style={{ backgroundColor: colorBgCond(m) }}>
+            <div className={c.title} style={{ marginBottom: "0.5rem" }}>
+              <div className={c.line}></div>
+              <h4>{m.project}</h4>
+            </div>
+            <BarChart data={m} />
+          </div>
+        ))}
+      </div>
+      <div className={c.crewChartContainer}>
+        <div className={c.title}>
+          <h1>family</h1>
+        </div>
+        {df.map((m) => (
+          <div className={c.chart} style={{ backgroundColor: colorBgCond(m) }}>
+            <div className={c.title} style={{ marginBottom: "0.5rem" }}>
+              <div className={c.line}></div>
+              <h4>{m.family}</h4>
+            </div>
+            <BarChart data={m} />
+          </div>
+        ))}
+      </div>
+      <div className={c.crewChartContainer} style={{ marginTop: "0.5rem" }}>
+        <div className={c.title}>
+          <h1>crews</h1>
+        </div>
         {d.map((m) => (
           <div className={c.chart} style={{ backgroundColor: colorBgCond(m) }}>
             <div className={c.title} style={{ marginBottom: "0.5rem" }}>

@@ -69,3 +69,67 @@ export const colorBgCond = (d) => {
     return "#690001";
   }
 };
+
+export const getChartFamily = (d) => {
+  const rd = [];
+  d.forEach((e) => {
+    if (rd.length === 0) {
+      rd.push({
+        project: e.project,
+        family: e.family,
+        shift: e.shift,
+        ok: e.ok,
+        nok: e.nok,
+        na: e.na,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.family === e.family);
+      if (i > -1) {
+        rd[i].ok += e.ok;
+        rd[i].na += e.na;
+        rd[i].nok += e.nok;
+      } else {
+        rd.push({
+          project: e.project,
+          family: e.family,
+          shift: e.shift,
+          ok: e.ok,
+          nok: e.nok,
+          na: e.na,
+        });
+      }
+    }
+  });
+  return rd;
+};
+
+export const getChartProject = (d) => {
+  const rd = [];
+  d.forEach((e) => {
+    if (rd.length === 0) {
+      rd.push({
+        project: e.project,
+        shift: e.shift,
+        ok: e.ok,
+        nok: e.nok,
+        na: e.na,
+      });
+    } else {
+      const i = rd.findIndex((f) => f.project === e.project);
+      if (i > -1) {
+        rd[i].ok += e.ok;
+        rd[i].na += e.na;
+        rd[i].nok += e.nok;
+      } else {
+        rd.push({
+          project: e.project,
+          shift: e.shift,
+          ok: e.ok,
+          nok: e.nok,
+          na: e.na,
+        });
+      }
+    }
+  });
+  return rd;
+};
