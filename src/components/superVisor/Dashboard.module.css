@@ -3,6 +3,7 @@
   align-items: center;
   gap: 1.5rem;
   width: 100%;
+  margin-top: 1rem;
 }
 .title h1 {
   color: aliceblue;
@@ -29,6 +30,11 @@
   width: 20rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  right: 10px;
+  top: 4rem;
+  z-index: 1111;
 }
 .inputD input {
   height: 2rem;
