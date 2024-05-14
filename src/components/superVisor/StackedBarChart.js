@@ -72,7 +72,7 @@ const StackedBarChart = (p) => {
         labels: {
           color: "#FAF0E6",
         },
-        display: false,
+        display: true,
       },
       datalabels: {
         display: true,
@@ -86,13 +86,15 @@ const StackedBarChart = (p) => {
           const meta = chart.getDatasetMeta(datasetIndex);
           meta.data.forEach((element, index) => {
             const data = `${dataset.data[index]}`;
-            let xPos = element.x;
-            let yPos = element.y + element.height / 2;
-            ctx.save();
-            ctx.textAlign = "center";
-            ctx.fillStyle = "#FFFAD7";
-            ctx.font = "17px Arial";
-            ctx.fillText(data, xPos, yPos);
+            if (data > 0) {
+              let xPos = element.x;
+              let yPos = element.y + element.height / 2;
+              ctx.save();
+              ctx.textAlign = "center";
+              ctx.fillStyle = "#FFFAD7";
+              ctx.font = "17px Arial";
+              ctx.fillText(data, xPos, yPos);
+            }
             ctx.restore();
           });
         });
