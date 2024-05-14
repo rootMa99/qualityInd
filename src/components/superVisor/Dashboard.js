@@ -1,9 +1,37 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import c from "./Dashboard.module.css";
+import api from "../../service/api";
+import { useSelector } from "react-redux";
+import { getChartCrewSV } from "../hooks/hfunc";
 
 const Dashboard = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
-  console.log(today);
+  const [data, setData]=useState([])
+  const { isLoged } = useSelector((s) => s.login);
+
+  const callback = useCallback(async () => {
+    try {
+      const response = await fetch(`${api}/result/?date=${today}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${isLoged.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const d = await response.json();
+      console.log(d);
+      setData(d)
+    } catch (e) {
+      console.error(e);
+    }
+  }, [isLoged.token, today]);
+  useEffect(() => {
+    callback();
+  }, [callback]);
+  console.log(getChartCrewSV(data))
   return (
     <div className={c.container}>
       <div className={c.title}>

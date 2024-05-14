@@ -3,7 +3,7 @@ export const getCurrentWeekNumber = () => {
   const startOfYear = new Date(now.getFullYear(), 0, 0);
   const diff = now - startOfYear;
   const oneWeek = 1000 * 60 * 60 * 24 * 7;
-  const weekNumber = Math.floor(diff / oneWeek)+1;
+  const weekNumber = Math.floor(diff / oneWeek) + 1;
   // const dayOfWeek = now.getDay() || 7;
   // const correctedWeekNumber = dayOfWeek === 1 ? weekNumber + 2 : weekNumber + 1;
   const correctedWeekNumber = weekNumber + 1;
@@ -13,16 +13,45 @@ export const getCurrentWeekNumber = () => {
   );
 };
 export const getCurrentWeek = () => {
-    const now = new Date();
-    const startOfYear = new Date(now.getFullYear(), 0, 0);
-    const diff = now - startOfYear;
-    const oneWeek = 1000 * 60 * 60 * 24 * 7;
-    const weekNumber = Math.floor(diff / oneWeek)+1;
-    // const dayOfWeek = now.getDay() || 7;
-    // const correctedWeekNumber = dayOfWeek === 1 ? weekNumber + 1 : weekNumber ;
-    const correctedWeekNumber = weekNumber;
-    return (
-      now.getFullYear() + "-W" + String(correctedWeekNumber).padStart(2, "0")
-    );
-  };
-  
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 0);
+  const diff = now - startOfYear;
+  const oneWeek = 1000 * 60 * 60 * 24 * 7;
+  const weekNumber = Math.floor(diff / oneWeek) + 1;
+  // const dayOfWeek = now.getDay() || 7;
+  // const correctedWeekNumber = dayOfWeek === 1 ? weekNumber + 1 : weekNumber ;
+  const correctedWeekNumber = weekNumber;
+  return (
+    now.getFullYear() + "-W" + String(correctedWeekNumber).padStart(2, "0")
+  );
+};
+
+export const getChartCrewSV = (d) => {
+  const rd = [];
+  d.forEach((e) => {
+    const s = {
+      crew: e.crew,
+      project: e.project,
+      line: e.line,
+      family: e.family,
+      shift: e.shift,
+      ok: 0,
+      nok: 0,
+      na: 0,
+    };
+    e.tasks.forEach((i) => {
+      if (i.result === "OK") {
+        s.ok += 1;
+      }
+      if (i.result === "NA") {
+        s.na += 1;
+      }
+      if (i.result === "NOK") {
+        s.nok += 1;
+      }
+    });
+    rd.push(s);
+  });
+
+  return rd;
+};
