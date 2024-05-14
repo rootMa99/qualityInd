@@ -9,6 +9,7 @@ import {
   getChartProject,
 } from "../hooks/hfunc";
 import BarChart from "./BarChart";
+import StackedBarChart from "./StackedBarChart";
 
 const Dashboard = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
@@ -101,6 +102,20 @@ const Dashboard = (p) => {
             <BarChart data={m} />
           </div>
         ))}
+      </div>
+      <div className={c.crewChartContainer} style={{ marginTop: "0.5rem" }}>
+        <div className={c.title}>
+          <h1>Stacked test</h1>
+        </div>
+          <div className={c.chart} style={{ width:"90%" }}>
+            <div className={c.title} style={{ marginBottom: "0.5rem" }}>
+              <div className={c.line}></div>
+              <h4>some data</h4>
+            </div>
+
+            <StackedBarChart />
+          </div>
+
       </div>
     </div>
   );
