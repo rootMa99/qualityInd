@@ -35,6 +35,8 @@
   right: 10px;
   top: 4rem;
   z-index: 1111;
+  background-color: #0502006c;
+  border-radius: 16px;
 }
 .inputD input {
   height: 2rem;

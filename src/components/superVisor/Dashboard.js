@@ -2,7 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import c from "./Dashboard.module.css";
 import api from "../../service/api";
 import { useSelector } from "react-redux";
-import { colorBgCond, getChartCrewSV, getChartFamily, getChartProject } from "../hooks/hfunc";
+import {
+  colorBgCond,
+  getChartCrewSV,
+  getChartFamily,
+  getChartProject,
+} from "../hooks/hfunc";
 import BarChart from "./BarChart";
 
 const Dashboard = (p) => {
@@ -34,7 +39,7 @@ const Dashboard = (p) => {
   }, [callback]);
   const d = getChartCrewSV(data);
   const dp = getChartProject(d);
-  const df= getChartFamily(d)
+  const df = getChartFamily(d);
   console.log("cl2:", d);
   console.log("cl projetc", dp);
   console.log("cl family", df);
