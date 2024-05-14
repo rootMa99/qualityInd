@@ -25,3 +25,39 @@
   right: -20px;
   top: -7px;
 }
+.inputD {
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
+}
+.inputD input {
+  height: 2rem;
+  width: 10rem;
+  border-radius: 6px;
+  font-family: inherit;
+  border: 1px solid #5e5d5d;
+  background-color: #8b8a8a;
+  color: #0c0c0c;
+  font-weight: bold;
+  width: 10rem;
+  text-align: center;
+}
+.inputD input:focus,
+.inputD input:hover {
+  outline: none;
+  border-color: #f84018;
+  cursor: pointer;
+}
+.inputD h3 {
+  text-align: left;
+  text-transform: uppercase;
+  color: aliceblue;
+}
+.inputD input[type="date"]:-webkit-calendar-picker-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 5px;
+  cursor: pointer;
+  color: aliceblue;
+}

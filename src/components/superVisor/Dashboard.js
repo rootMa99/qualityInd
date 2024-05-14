@@ -7,6 +7,10 @@ const Dashboard = (p) => {
         <div className={c.line}></div>
         <h1>dashboard</h1>
       </div>
+      <div className={c.inputD}>
+        <h3>choosen date:</h3>
+        <input type="date" />
+      </div>
     </div>
   );
 };
