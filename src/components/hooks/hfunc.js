@@ -55,3 +55,17 @@ export const getChartCrewSV = (d) => {
 
   return rd;
 };
+
+export const colorBgCond = (d) => {
+  const cal = (d.ok / (d.ok + d.nok + d.na)) * 100;
+
+  if (cal >= 98) {
+    return "#4E7C88";
+  }
+  if (cal < 98 && cal >= 96) {
+    return "#774c03";
+  }
+  if (cal < 96) {
+    return "#690001";
+  }
+};

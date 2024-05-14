@@ -5,7 +5,7 @@
   width: 100%;
   margin-top: 1rem;
 }
-.title h1 {
+.title h1, .title h4 {
   color: aliceblue;
   margin: 0;
   text-transform: uppercase;
@@ -73,4 +73,17 @@
 .inputD input[type="date"]::-webkit-calendar-picker-indicator:hover{
     transform: scale(1.2);
     background-color: #fd7d61;
+}
+.chart{
+    width: 30%;
+    height: 15rem;
+    padding: 3rem 0;
+    border-radius: 20px;
+}
+.crewChartContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px 0;
 }

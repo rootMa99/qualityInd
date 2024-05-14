@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import c from "./Dashboard.module.css";
 import api from "../../service/api";
 import { useSelector } from "react-redux";
-import { getChartCrewSV } from "../hooks/hfunc";
+import { colorBgCond, getChartCrewSV } from "../hooks/hfunc";
+import BarChart from "./BarChart";
 
 const Dashboard = (p) => {
   const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
-  const [data, setData]=useState([])
+  const [data, setData] = useState([]);
   const { isLoged } = useSelector((s) => s.login);
 
   const callback = useCallback(async () => {
@@ -23,7 +24,7 @@ const Dashboard = (p) => {
       }
       const d = await response.json();
       console.log(d);
-      setData(d)
+      setData(d);
     } catch (e) {
       console.error(e);
     }
@@ -31,7 +32,8 @@ const Dashboard = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
-  console.log(getChartCrewSV(data))
+  const d = getChartCrewSV(data);
+  console.log(d);
   return (
     <div className={c.container}>
       <div className={c.title}>
@@ -47,6 +49,18 @@ const Dashboard = (p) => {
           max={new Date().toISOString().split("T")[0]}
           pattern="yyyy-mm-dd"
         />
+      </div>
+      <div className={c.crewChartContainer}>
+        {d.map((m) => (
+          <div className={c.chart} style={{ backgroundColor: colorBgCond(m) }}>
+            <div className={c.title} style={{ marginBottom: "0.5rem" }}>
+              <div className={c.line}></div>
+              <h4>{m.crew}</h4>
+            </div>
+
+            <BarChart data={m} />
+          </div>
+        ))}
       </div>
     </div>
   );
