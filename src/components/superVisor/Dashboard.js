@@ -114,7 +114,11 @@ const Dashboard = (p) => {
           className={c.chart}
           style={{ width: "90%", padding: 0, height: "25rem" }}
         >
-          <StackedBarChart data={da} />
+          <StackedBarChart
+            data={da.sort( (a, b) => {
+              return b.ok - a.ok;
+            })}
+          />
         </div>
       </div>
     </div>
